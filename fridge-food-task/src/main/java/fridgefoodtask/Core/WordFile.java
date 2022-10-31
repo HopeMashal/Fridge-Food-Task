@@ -1,11 +1,9 @@
 package fridgefoodtask.Core;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -132,25 +130,4 @@ public class WordFile {
     document.close();
   }
 
-  public static void main(String[] args) throws IOException, InvalidFormatException {
-    WordFile wfile = new WordFile(Constant.getOutputFilesPath() + "test.docx");
-    wfile.AddTitle("Hello");
-    wfile.AddSubtitle("How are you!!");
-    wfile.AddParagraph("I'm OK!!!");
-    wfile.AddFooter("Document Footer");
-    wfile.AddHeader("Document Header");
-    DownloadFile dfile = new DownloadFile();
-    File image = dfile.DownloadFileMethod("https://myfridgefood.com//Media/Recipe/photo%204.JPG",
-        Constant.getDownloadsPath() + "images.jpg");
-    wfile.AddImage(image.getPath());
-    List<String[]> myList = new ArrayList<String[]>();
-    myList.add(new String[] { "Cook Time: 5 mins", "Calories: 446" });
-    myList.add(new String[] { "Cook Time: 10 mins", "Calories: 456" });
-    wfile.AddTable(myList);
-    List<String> list = new ArrayList<String>();
-    list.add("first");
-    list.add("second");
-    wfile.AddLists(list);
-    wfile.WriteWordFile();
-  }
 }
