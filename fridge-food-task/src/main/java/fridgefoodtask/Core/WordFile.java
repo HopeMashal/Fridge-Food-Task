@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,6 +94,7 @@ public class WordFile {
         nextRow.getCell(j).setText(TableElements.get(i)[j]);
       }
     }
+    document.createParagraph();
   }
 
   public void AddHeader(String header) {
@@ -114,10 +116,12 @@ public class WordFile {
       XWPFParagraph paragraphParagraph = document.createParagraph();
       paragraphParagraph.setAlignment(ParagraphAlignment.LEFT);
       XWPFRun paragraphRun = paragraphParagraph.createRun();
-      paragraphRun.setText("- " + element);
-      paragraphRun.setColor("a39b7b");
-      paragraphRun.setFontFamily("Calibri");
+      paragraphRun.setText(element);
+      paragraphRun.setColor("e78e8e");
+      paragraphRun.setFontFamily("Arial");
       paragraphRun.setFontSize(11);
+      paragraphParagraph.setFirstLineIndent(10);
+      paragraphParagraph.setNumID(BigInteger.valueOf(lists.size()));
     }
   }
 
