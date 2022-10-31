@@ -15,10 +15,4 @@ public class DownloadFile {
         DestFile);
     return DestFile;
   }
-
-  public static void main(String[] args) throws MalformedURLException, IOException {
-    DownloadFile dfile = new DownloadFile();
-    dfile.DownloadFileMethod("https://myfridgefood.com//Media/Recipe/photo%204.JPG",
-        Constant.getDownloadsPath() + "images.jpg");
-  }
 }

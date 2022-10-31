@@ -1,21 +1,57 @@
 package fridgefoodtask.Core;
 
-import java.util.List;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 public class WordFile {
-  public static void WriteTitleWithParagraphs(String filePath, String header, String footer, String title,
-      List<String> paragraphs) {
+  XWPFDocument document;
+  String filePath;
+  FileOutputStream outputFile;
+
+  public WordFile(String filePath) {
+    this.filePath = filePath;
+    document = new XWPFDocument();
+  }
+
+  public void AddTitle() {
 
   }
 
-  public static void WriteRecipeFile(String filePath, String header, String footer, String title,
-      List<String> paragraphs, String pictureURL, List<String> tableValues) {
+  public void AddSubtitle() {
 
   }
 
-  public static void WriteContestFile(String filePath, String header, String footer, String title,
-      List<String> paragraphs, String pictureURL) {
-    WriteTitleWithParagraphs(filePath, header, footer, title, paragraphs);
+  public void AddParagraph() {
 
   }
+
+  public void AddImage() {
+
+  }
+
+  public void AddTable() {
+
+  }
+
+  public void AddHeader() {
+
+  }
+
+  public void AddFooter() {
+
+  }
+
+  public void AddLists() {
+
+  }
+
+  public void WriteWordFile() throws IOException {
+    outputFile = new FileOutputStream(filePath);
+    document.write(outputFile);
+    outputFile.close();
+    document.close();
+  }
+
 }
