@@ -18,4 +18,9 @@
       </class>
     </classes>
   </test>
+  <test name="SignIn Test">
+    <classes>
+      <class name="fridgefoodtask.PagesTest.SignInTest" />
+    </classes>
+  </test>
 </suite>
