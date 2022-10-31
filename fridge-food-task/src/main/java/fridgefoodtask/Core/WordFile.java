@@ -1,5 +1,5 @@
 package fridgefoodtask.Core;
 
-public class TextFile {
+public class WordFile {
   
 }
