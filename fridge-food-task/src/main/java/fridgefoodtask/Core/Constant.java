@@ -9,6 +9,7 @@ public class Constant {
   private static String CSVOutputFilesPath = OutputFilesPath + "CSVFiles/";
   private static String WordFilesPath = OutputFilesPath + "WordFiles/";
   private static String PropertiesFilesPath = InputFilesPath + "PropertiesFiles/";
+  private static String DownloadsPath = FilesPath + "Downloads/";
   private static String URL = "https://www.myfridgefood.com";
 
   public static String getFilesPath() {
@@ -45,6 +46,10 @@ public class Constant {
 
   public static String getURL() {
     return URL;
+  }
+
+  public static String getDownloadsPath() {
+    return DownloadsPath;
   }
 
 }
