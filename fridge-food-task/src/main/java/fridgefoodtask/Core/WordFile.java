@@ -4,18 +4,23 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.util.Units;
 import org.apache.poi.wp.usermodel.HeaderFooterType;
 import org.apache.poi.xwpf.usermodel.Document;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
+import org.apache.poi.xwpf.usermodel.TableRowAlign;
 import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFFooter;
 import org.apache.poi.xwpf.usermodel.XWPFHeader;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.apache.poi.xwpf.usermodel.XWPFTable;
+import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 
 public class WordFile {
   XWPFDocument document;
@@ -54,11 +59,11 @@ public class WordFile {
   public void AddParagraph(String paragraph) {
     XWPFParagraph paragraphParagraph = document.createParagraph();
     paragraphParagraph.setAlignment(ParagraphAlignment.LEFT);
-    XWPFRun subTitleRun = paragraphParagraph.createRun();
-    subTitleRun.setText(paragraph);
-    subTitleRun.setColor("000000");
-    subTitleRun.setFontFamily("Calibri");
-    subTitleRun.setFontSize(14);
+    XWPFRun paragraphRun = paragraphParagraph.createRun();
+    paragraphRun.setText(paragraph);
+    paragraphRun.setColor("000000");
+    paragraphRun.setFontFamily("Calibri");
+    paragraphRun.setFontSize(14);
   }
 
   public void AddImage(String imagePath) throws InvalidFormatException, IOException {
@@ -66,6 +71,7 @@ public class WordFile {
     XWPFParagraph paragraph = document.createParagraph();
     paragraph.setAlignment(ParagraphAlignment.CENTER);
     XWPFRun paragraphRun = paragraph.createRun();
+    paragraphRun.setTextPosition(20);
     paragraphRun.addPicture(imageFile,
         Document.PICTURE_TYPE_PNG, // png file
         imagePath,
@@ -73,8 +79,20 @@ public class WordFile {
         Units.toEMU(250));
   }
 
-  public void AddTable() {
-
+  public void AddTable(List<String[]> TableElements) {
+    XWPFTable table = document.createTable();
+    table.setTableAlignment(TableRowAlign.CENTER);
+    XWPFTableRow firstRow = table.getRow(0);
+    firstRow.getCell(0).setText(TableElements.get(0)[0]);
+    for (int j = 1; j < TableElements.get(0).length; j++) {
+      firstRow.addNewTableCell().setText(TableElements.get(0)[j]);
+    }
+    for (int i = 1; i < TableElements.size(); i++) {
+      XWPFTableRow nextRow = table.createRow();
+      for (int j = 0; j < TableElements.get(0).length; j++) {
+        nextRow.getCell(j).setText(TableElements.get(i)[j]);
+      }
+    }
   }
 
   public void AddHeader(String header) {
@@ -91,8 +109,16 @@ public class WordFile {
         .setText(footer);
   }
 
-  public void AddLists() {
-
+  public void AddLists(List<String> lists) {
+    for (String element : lists) {
+      XWPFParagraph paragraphParagraph = document.createParagraph();
+      paragraphParagraph.setAlignment(ParagraphAlignment.LEFT);
+      XWPFRun paragraphRun = paragraphParagraph.createRun();
+      paragraphRun.setText("- " + element);
+      paragraphRun.setColor("a39b7b");
+      paragraphRun.setFontFamily("Calibri");
+      paragraphRun.setFontSize(11);
+    }
   }
 
   public void WriteWordFile() throws IOException {
@@ -113,6 +139,14 @@ public class WordFile {
     File image = dfile.DownloadFileMethod("https://myfridgefood.com//Media/Recipe/photo%204.JPG",
         Constant.getDownloadsPath() + "images.jpg");
     wfile.AddImage(image.getPath());
+    List<String[]> myList = new ArrayList<String[]>();
+    myList.add(new String[] { "Cook Time: 5 mins", "Calories: 446" });
+    myList.add(new String[] { "Cook Time: 10 mins", "Calories: 456" });
+    wfile.AddTable(myList);
+    List<String> list = new ArrayList<String>();
+    list.add("first");
+    list.add("second");
+    wfile.AddLists(list);
     wfile.WriteWordFile();
   }
 }
