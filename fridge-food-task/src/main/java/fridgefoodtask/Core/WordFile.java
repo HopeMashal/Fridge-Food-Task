@@ -1,11 +1,19 @@
 package fridgefoodtask.Core;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.util.Units;
+import org.apache.poi.wp.usermodel.HeaderFooterType;
+import org.apache.poi.xwpf.usermodel.Document;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFFooter;
+import org.apache.poi.xwpf.usermodel.XWPFHeader;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 
@@ -53,20 +61,34 @@ public class WordFile {
     subTitleRun.setFontSize(14);
   }
 
-  public void AddImage() {
-
+  public void AddImage(String imagePath) throws InvalidFormatException, IOException {
+    FileInputStream imageFile = new FileInputStream(imagePath);
+    XWPFParagraph paragraph = document.createParagraph();
+    paragraph.setAlignment(ParagraphAlignment.CENTER);
+    XWPFRun paragraphRun = paragraph.createRun();
+    paragraphRun.addPicture(imageFile,
+        Document.PICTURE_TYPE_PNG, // png file
+        imagePath,
+        Units.toEMU(250),
+        Units.toEMU(250));
   }
 
   public void AddTable() {
 
   }
 
-  public void AddHeader() {
-
+  public void AddHeader(String header) {
+    XWPFHeader head = document.createHeader(HeaderFooterType.DEFAULT);
+    head.createParagraph()
+        .createRun()
+        .setText(header);
   }
 
-  public void AddFooter() {
-
+  public void AddFooter(String footer) {
+    XWPFFooter foot = document.createFooter(HeaderFooterType.DEFAULT);
+    foot.createParagraph()
+        .createRun()
+        .setText(footer);
   }
 
   public void AddLists() {
@@ -80,11 +102,17 @@ public class WordFile {
     document.close();
   }
 
-  public static void main(String[] args) throws IOException {
-    WordFile wfile = new WordFile(Constant.getOutputFilesPath()+"test.docx");
+  public static void main(String[] args) throws IOException, InvalidFormatException {
+    WordFile wfile = new WordFile(Constant.getOutputFilesPath() + "test.docx");
     wfile.AddTitle("Hello");
     wfile.AddSubtitle("How are you!!");
     wfile.AddParagraph("I'm OK!!!");
+    wfile.AddFooter("Document Footer");
+    wfile.AddHeader("Document Header");
+    DownloadFile dfile = new DownloadFile();
+    File image = dfile.DownloadFileMethod("https://myfridgefood.com//Media/Recipe/photo%204.JPG",
+        Constant.getDownloadsPath() + "images.jpg");
+    wfile.AddImage(image.getPath());
     wfile.WriteWordFile();
   }
 }
