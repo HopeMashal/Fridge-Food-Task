@@ -12,7 +12,6 @@ import fridgefoodtask.Components.RecipeCard;
 
 public class SearchPage extends Navbar {
   List<WebElement> firstPageResults;
-  List<WebElement> homeSearchFirstPageResults;
   WebElement firstResult;
 
   public SearchPage(WebDriver driver) {
@@ -37,7 +36,7 @@ public class SearchPage extends Navbar {
 
   public List<String[]> getHomeSearchFirstPageResults() {
     List<String[]> results = new ArrayList<String[]>();
-    homeSearchFirstPageResults = driver.findElements(By.className("recipe-tile recipe"));
+    firstPageResults = driver.findElements(By.className("recipe-tile recipe"));
     for (WebElement result : firstPageResults) {
       RecipeCard recipeCard = new RecipeCard(driver, result);
       String resultLink = recipeCard.getRecipeCardLink();
@@ -58,4 +57,10 @@ public class SearchPage extends Navbar {
     firstResult.click();
   }
 
+  public void clickBookmarksBtn(int index) {
+    firstPageResults = driver.findElements(By.className("recipe-tile recipe"));
+    WebElement recipeResult = firstPageResults.get(index);
+    RecipeCard recipeCard = new RecipeCard(driver, recipeResult);
+    recipeCard.clickBookmarksBtn();
+  }
 }
