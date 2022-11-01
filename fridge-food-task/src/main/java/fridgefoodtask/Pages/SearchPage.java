@@ -16,7 +16,7 @@ public class SearchPage extends Navbar {
     // TODO Auto-generated constructor stub
   }
 
-  public List<String[]> searchPageMethod() {
+  public List<String[]> getFirstPageResults() {
     List<String[]> results = new ArrayList<String[]>();
     firstPageResults = driver.findElements(By.className("recipe-tile recipe"));
     for (WebElement result : firstPageResults) {
@@ -32,17 +32,17 @@ public class SearchPage extends Navbar {
     return results;
   }
 
-  public List<String[]> homeSearchPageMethod() {
+  public List<String[]> getHomeSearchFirstPageResults() {
     List<String[]> results = new ArrayList<String[]>();
     homeSearchFirstPageResults = driver.findElements(By.className("recipe-tile recipe"));
     return results;
   }
 
-  public void clickFirstSearchResult() {
+  public void clickFirstResult() {
 
   }
 
-  public void clickFirstHomeSearchResult() {
+  public void clickHomeSearchFirstResult() {
 
   }
 }
