@@ -10,6 +10,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class OpenBrowser {
   public static WebDriver openBrowser(String browser) {
@@ -48,6 +49,9 @@ public class OpenBrowser {
     options.addArguments("--start-maximized");
     options.addArguments("--headless");
     options.addArguments("--disable-infobars");
+    options.addArguments("load-extension=/path/to/extension");
+    DesiredCapabilities capabilities = new DesiredCapabilities();
+    capabilities.setCapability(ChromeOptions.CAPABILITY, options);
     driver = new ChromeDriver(options);
     return driver;
   }
