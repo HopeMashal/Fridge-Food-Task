@@ -10,6 +10,8 @@ import org.openqa.selenium.WebElement;
 public class SearchPage extends Navbar {
   List<WebElement> firstPageResults;
   List<WebElement> homeSearchFirstPageResults;
+  WebElement firstResult;
+  WebElement homeSearchFirstResult;
 
   public SearchPage(WebDriver driver) {
     super(driver);
@@ -62,10 +64,14 @@ public class SearchPage extends Navbar {
   }
 
   public void clickFirstResult() {
-
+    firstResult = driver
+        .findElement(By.cssSelector("div[class='line-item-image-container']>a"));
+    firstResult.click();
   }
 
   public void clickHomeSearchFirstResult() {
-
+    homeSearchFirstResult = driver
+        .findElement(By.cssSelector("div[class='line-item-image-container']>a"));
+    homeSearchFirstResult.click();
   }
 }
