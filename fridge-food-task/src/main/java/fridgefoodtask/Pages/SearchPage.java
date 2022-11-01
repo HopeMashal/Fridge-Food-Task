@@ -12,7 +12,7 @@ import fridgefoodtask.Components.RecipeCard;
 
 public class SearchPage extends Navbar {
   List<WebElement> firstPageResults;
-  WebElement firstResult;
+  WebElement selectResult;
 
   public SearchPage(WebDriver driver) {
     super(driver);
@@ -51,16 +51,15 @@ public class SearchPage extends Navbar {
     return results;
   }
 
-  public void clickFirstResult() {
-    firstResult = driver
-        .findElement(By.cssSelector("div[class='line-item-image-container']>a"));
-    firstResult.click();
+  public void clickSelectResult(int index) {
+    selectResult = driver
+        .findElements(By.cssSelector("div[class='line-item-image-container']>a")).get(index);
+    selectResult.click();
   }
 
-  public void clickBookmarksBtn(int index) {
-    firstPageResults = driver.findElements(By.className("recipe-tile recipe"));
-    WebElement recipeResult = firstPageResults.get(index);
-    RecipeCard recipeCard = new RecipeCard(driver, recipeResult);
+  public void clickSelectBookmarksBtn(int index) {
+    selectResult = driver.findElements(By.className("recipe-tile recipe")).get(index);
+    RecipeCard recipeCard = new RecipeCard(driver, selectResult);
     recipeCard.clickBookmarksBtn();
   }
 }

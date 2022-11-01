@@ -21,8 +21,13 @@ public class BookmarksPage extends Navbar {
     return bookmarkResults;
   }
 
-  public void deleteBookmarks(int index) {
+  public void deleteSelectBookmarks(int index) {
     SearchPage bookmarksPage = new SearchPage(driver);
-    bookmarksPage.clickBookmarksBtn(index);
+    bookmarksPage.clickSelectBookmarksBtn(index);
+  }
+
+  public void clickSelectBookmarksResult(int index) {
+    SearchPage bookmarksPage = new SearchPage(driver);
+    bookmarksPage.clickSelectResult(index);
   }
 }
