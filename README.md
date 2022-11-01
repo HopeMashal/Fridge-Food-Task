@@ -1,10 +1,10 @@
 ## Final project details
 
-- [ ] Page Object Model must be used
+- [X] Page Object Model must be used
 
-- [ ] At least 10 pages must be used in the test
+- [X] At least 10 pages must be used in the test
 
-- [ ] No duplication is allowed, arrange code in packages will be great
+- [X] No duplication is allowed, arrange code in packages will be great
 
 - [ ] Data Driven testing - must
 
@@ -16,4 +16,4 @@
 
 - [ ] Tests and Assertions – Must
 
-- [ ] Python or Java can be used, Appium or selenium can be used
+- [X] Python or Java can be used, Appium or selenium can be used
