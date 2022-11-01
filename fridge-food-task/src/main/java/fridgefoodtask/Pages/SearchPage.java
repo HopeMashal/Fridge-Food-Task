@@ -8,12 +8,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import fridgefoodtask.Components.Navbar;
+import fridgefoodtask.Components.RecipeCard;
 
 public class SearchPage extends Navbar {
   List<WebElement> firstPageResults;
   List<WebElement> homeSearchFirstPageResults;
   WebElement firstResult;
-  WebElement homeSearchFirstResult;
 
   public SearchPage(WebDriver driver) {
     super(driver);
@@ -24,12 +24,11 @@ public class SearchPage extends Navbar {
     List<String[]> results = new ArrayList<String[]>();
     firstPageResults = driver.findElements(By.className("recipe-tile recipe"));
     for (WebElement result : firstPageResults) {
-      String resultLink = result.findElement(By.cssSelector("div[class='line-item-image-container']>a"))
-          .getAttribute("href");
-      String resultName = result.findElement(By.cssSelector("div[class='line-item-body']>a")).getText();
-      String resultCategory = result.findElement(By.cssSelector("div[class='line-item-details']>p")).getText();
-      String resultImgSrc = result.findElement(By.cssSelector("div[class='line-item-image-container']>a>img"))
-          .getAttribute("src");
+      RecipeCard recipeCard = new RecipeCard(driver, result);
+      String resultLink = recipeCard.getRecipeCardLink();
+      String resultName = recipeCard.getRecipeCardName();
+      String resultCategory = recipeCard.getRecipeCardCategory();
+      String resultImgSrc = recipeCard.getRecipeCardImgSrc();
       String[] resultValues = new String[] { resultName, resultLink, resultCategory, resultImgSrc };
       results.add(resultValues);
     }
@@ -40,26 +39,14 @@ public class SearchPage extends Navbar {
     List<String[]> results = new ArrayList<String[]>();
     homeSearchFirstPageResults = driver.findElements(By.className("recipe-tile recipe"));
     for (WebElement result : firstPageResults) {
-      String resultLink = result.findElement(By.cssSelector("div[class='line-item-image-container']>a"))
-          .getAttribute("href");
-      String resultName = result.findElement(By.cssSelector("div[class='line-item-body']>a")).getText();
-      String resultCookingTime = result.findElement(By.cssSelector("div[class='line-item-details']")).getText();
-      String resultImgSrc = result.findElement(By.cssSelector("div[class='line-item-image-container']>a>img"))
-          .getAttribute("src");
-      String resultIngredients = result.findElement(By.cssSelector("div[class='missing-ingred-container']>span"))
-          .getText();
-      String resultIngredientsValue = "None";
-      if (resultIngredients.equals("Missing Ingredients")) {
-        resultIngredientsValue = "";
-        List<WebElement> IngredientsList = result
-            .findElements(By.cssSelector("div[class='flex-row']>span[class='AddIngredientName']"));
-        for (WebElement ingredient : IngredientsList) {
-          resultIngredientsValue += ingredient.getText() + ", ";
-        }
-        resultIngredientsValue = resultIngredientsValue.substring(0, resultIngredientsValue.length() - 2);
-      }
+      RecipeCard recipeCard = new RecipeCard(driver, result);
+      String resultLink = recipeCard.getRecipeCardLink();
+      String resultName = recipeCard.getRecipeCardName();
+      String resultCookingTime = recipeCard.getRecipeCardCookingTime();
+      String resultImgSrc = recipeCard.getRecipeCardImgSrc();
+      String resultIngredients = recipeCard.getRecipeCardIngredients();
       String[] resultValues = new String[] { resultName, resultLink, resultCookingTime, resultImgSrc,
-          resultIngredientsValue };
+          resultIngredients };
       results.add(resultValues);
     }
     return results;
@@ -71,9 +58,4 @@ public class SearchPage extends Navbar {
     firstResult.click();
   }
 
-  public void clickHomeSearchFirstResult() {
-    homeSearchFirstResult = driver
-        .findElement(By.cssSelector("div[class='line-item-image-container']>a"));
-    homeSearchFirstResult.click();
-  }
 }
