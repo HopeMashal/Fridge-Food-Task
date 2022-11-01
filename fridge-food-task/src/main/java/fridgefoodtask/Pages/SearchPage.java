@@ -1,5 +1,12 @@
 package fridgefoodtask.Pages;
 
-public class SearchPage {
+import org.openqa.selenium.WebDriver;
+
+public class SearchPage extends Navbar {
+
+  public SearchPage(WebDriver driver) {
+    super(driver);
+    //TODO Auto-generated constructor stub
+  }
   
 }

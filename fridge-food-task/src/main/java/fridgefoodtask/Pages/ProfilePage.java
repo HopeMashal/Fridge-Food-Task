@@ -1,5 +1,12 @@
 package fridgefoodtask.Pages;
 
-public class ProfilePage {
+import org.openqa.selenium.WebDriver;
+
+public class ProfilePage extends Navbar {
+
+  public ProfilePage(WebDriver driver) {
+    super(driver);
+    //TODO Auto-generated constructor stub
+  }
   
 }

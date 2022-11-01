@@ -1,5 +1,12 @@
 package fridgefoodtask.Pages;
 
-public class ContestPage {
+import org.openqa.selenium.WebDriver;
+
+public class ContestPage extends Navbar {
+
+  public ContestPage(WebDriver driver) {
+    super(driver);
+    //TODO Auto-generated constructor stub
+  }
   
 }

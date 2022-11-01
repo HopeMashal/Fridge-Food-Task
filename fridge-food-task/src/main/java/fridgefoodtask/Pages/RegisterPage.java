@@ -1,5 +1,12 @@
 package fridgefoodtask.Pages;
 
-public class RegisterPage {
+import org.openqa.selenium.WebDriver;
+
+public class RegisterPage extends Navbar {
+
+  public RegisterPage(WebDriver driver) {
+    super(driver);
+    //TODO Auto-generated constructor stub
+  }
   
 }
