@@ -2,6 +2,8 @@ package fridgefoodtask.Pages;
 
 import org.openqa.selenium.WebDriver;
 
+import fridgefoodtask.Components.Navbar;
+
 public class ContestPage extends Navbar {
 
   public ContestPage(WebDriver driver) {
@@ -10,3 +12,4 @@ public class ContestPage extends Navbar {
   }
   
 }
+

@@ -1,4 +1,4 @@
-package fridgefoodtask.Pages;
+package fridgefoodtask.Components;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Navbar {
-  WebDriver driver;
+  public WebDriver driver;
   WebElement homeBtn;
   WebElement bookmarksBtn;
   WebElement contestsBtn;

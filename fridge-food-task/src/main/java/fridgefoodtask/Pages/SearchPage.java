@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import fridgefoodtask.Components.Navbar;
+
 public class SearchPage extends Navbar {
   List<WebElement> firstPageResults;
   List<WebElement> homeSearchFirstPageResults;
