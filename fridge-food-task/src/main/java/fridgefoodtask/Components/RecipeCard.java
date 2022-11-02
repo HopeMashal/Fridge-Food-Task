@@ -34,7 +34,7 @@ public class RecipeCard {
 
   public String getRecipeCardImgSrc() {
     String recipeCardImgSrc = recipeElement.findElement(By.cssSelector("div[class='line-item-image-container']>a>img"))
-        .getAttribute("src");
+        .getAttribute("src").replace(" ", "%20");
     return recipeCardImgSrc;
   }
 

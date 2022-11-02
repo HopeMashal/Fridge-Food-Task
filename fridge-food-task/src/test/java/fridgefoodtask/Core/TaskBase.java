@@ -1,22 +1,55 @@
 package fridgefoodtask.Core;
 
+import java.time.Duration;
+
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
+import fridgefoodtask.Components.Navbar;
+import io.qameta.allure.Allure;
+
 public class TaskBase {
+  public static WebDriver driver;
+  static TakeScreenShot takeScreenShot;
+
   @BeforeSuite
   public void beforeSuite() {
-    System.out.println("Before Suite");
+    Allure.step("Before Suite Method");
+    Allure.step("Open Headless Chrome Browser");
+    driver = OpenBrowser.openChromeWithOptions();
+    takeScreenShot = new TakeScreenShot(driver);
+    driver.manage().window().setSize(new Dimension(1280, 900));
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(100));
+    Allure.step("Open MyFridgeFood.com");
+    driver.get(Constant.getURL());
   }
 
   @BeforeTest
-  public void beforeTest(){
-    System.out.println("Before Test");
+  public void beforeTest() {
+    Allure.step("Before Test Method");
+    Allure.step("Go to Home Page Using Navbar Method");
+    Navbar navbar = new Navbar(driver);
+    navbar.clickHomeBtn();
+    Allure.step("Check URL & Title of Home Page");
+    String[] homeHref = navbar.homeHref();
+    Assert.assertEquals(driver.getTitle(), homeHref[0], "Title of Home Page NOT MATCH");
+    Assert.assertEquals(driver.getCurrentUrl(), homeHref[1], "URL of Home Page NOT MATCH");
+  }
+
+  @AfterTest
+  public void afterTest() {
+    Allure.step("After Test Method");
   }
 
   @AfterSuite
   public void afterSuite() {
-    System.out.println("After Suite");
+    Allure.step("After Suite Method");
+    Allure.step("Close Headless Chrome Browser");
+    driver.quit();
   }
 }

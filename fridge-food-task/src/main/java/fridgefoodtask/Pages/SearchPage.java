@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -11,17 +12,19 @@ import fridgefoodtask.Components.Navbar;
 import fridgefoodtask.Components.RecipeCard;
 
 public class SearchPage extends Navbar {
+  JavascriptExecutor JavaScript;
   List<WebElement> firstPageResults;
   WebElement selectResult;
 
   public SearchPage(WebDriver driver) {
     super(driver);
+    JavaScript = (JavascriptExecutor) driver;
     // TODO Auto-generated constructor stub
   }
 
   public List<String[]> getFirstPageResults() {
     List<String[]> results = new ArrayList<String[]>();
-    firstPageResults = driver.findElements(By.className("recipe-tile recipe"));
+    firstPageResults = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']"));
     for (WebElement result : firstPageResults) {
       RecipeCard recipeCard = new RecipeCard(driver, result);
       String resultLink = recipeCard.getRecipeCardLink();
@@ -36,7 +39,7 @@ public class SearchPage extends Navbar {
 
   public List<String[]> getHomeSearchFirstPageResults() {
     List<String[]> results = new ArrayList<String[]>();
-    firstPageResults = driver.findElements(By.className("recipe-tile recipe"));
+    firstPageResults = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']"));
     for (WebElement result : firstPageResults) {
       RecipeCard recipeCard = new RecipeCard(driver, result);
       String resultLink = recipeCard.getRecipeCardLink();
@@ -53,12 +56,12 @@ public class SearchPage extends Navbar {
 
   public void clickSelectResult(int index) {
     selectResult = driver
-        .findElements(By.cssSelector("div[class='line-item-image-container']>a")).get(index);
-    selectResult.click();
+        .findElements(By.cssSelector("div[class='line-item-body']>a")).get(index);
+    JavaScript.executeScript("arguments[" + index + "].click();", selectResult);
   }
 
   public void clickSelectBookmarksBtn(int index) {
-    selectResult = driver.findElements(By.className("recipe-tile recipe")).get(index);
+    selectResult = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']")).get(index);
     RecipeCard recipeCard = new RecipeCard(driver, selectResult);
     recipeCard.clickBookmarksBtn();
   }

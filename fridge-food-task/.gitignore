@@ -1,6 +1,7 @@
 target
 allure-results
 Screenshots
-OutputFiles
 test-output
 Downloads
+*.docx
+*Output.csv

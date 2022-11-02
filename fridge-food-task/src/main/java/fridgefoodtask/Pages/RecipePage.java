@@ -47,7 +47,7 @@ public class RecipePage extends Navbar {
 
   public String getRecipeImgPath() throws MalformedURLException, IOException {
     recipeImg = driver.findElement(By.className("recipe-image"));
-    String ImgUrl = recipeImg.getAttribute("src");
+    String ImgUrl = recipeImg.getAttribute("src").replace(" ", "%20");
     DownloadFile downloadFile = new DownloadFile();
     File image = downloadFile.DownloadFileMethod(ImgUrl,
         Constant.getDownloadsPath() + getRecipeName().replace(" ", "") + ".jpg");
@@ -64,10 +64,11 @@ public class RecipePage extends Navbar {
     List<String[]> infoList = new ArrayList<String[]>();
     for (WebElement info : recipeInformation) {
       String infoTitle = info.findElement(By.tagName("h3")).getText();
-      String infoText = info.getText().replaceFirst(infoTitle, "");
+      String infoText = info.getText().replaceFirst(infoTitle + "\n", "");
       String[] information = new String[] { infoTitle, infoText };
       infoList.add(information);
     }
     return infoList;
   }
+
 }

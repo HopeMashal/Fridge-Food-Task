@@ -3,12 +3,9 @@ package fridgefoodtask.Core;
 public class Constant {
   private static String FilesPath = "./src/files/";
   private static String ScreenShotsPath = FilesPath + "Screenshots/";
-  private static String InputFilesPath = FilesPath + "InputFiles/";
-  private static String OutputFilesPath = FilesPath + "OutputFiles/";
-  private static String CSVInputFilesPath = InputFilesPath + "CSVFiles/";
-  private static String CSVOutputFilesPath = OutputFilesPath + "CSVFiles/";
-  private static String WordFilesPath = OutputFilesPath + "WordFiles/";
-  private static String PropertiesFilesPath = InputFilesPath + "PropertiesFiles/";
+  private static String CSVFilesPath = FilesPath + "CSVFiles/";
+  private static String WordFilesPath = FilesPath + "WordFiles/";
+  private static String PropertiesFilesPath = FilesPath + "PropertiesFiles/";
   private static String DownloadsPath = FilesPath + "Downloads/";
   private static String URL = "https://www.myfridgefood.com";
 
@@ -20,20 +17,8 @@ public class Constant {
     return ScreenShotsPath;
   }
 
-  public static String getInputFilesPath() {
-    return InputFilesPath;
-  }
-
-  public static String getOutputFilesPath() {
-    return OutputFilesPath;
-  }
-
-  public static String getCSVInputFilesPath() {
-    return CSVInputFilesPath;
-  }
-
-  public static String getCSVOutputFilesPath() {
-    return CSVOutputFilesPath;
+  public static String getCSVFilesPath() {
+    return CSVFilesPath;
   }
 
   public static String getWordFilesPath() {
