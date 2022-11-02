@@ -35,7 +35,8 @@ public class ContestPage extends Navbar {
     contestParagraphs = driver.findElements(By.cssSelector("div[class='page-block']>p"));
     List<String> paragraphsList = new ArrayList<String>();
     for (WebElement paragraph : contestParagraphs) {
-      paragraphsList.add(paragraph.getText());
+      if (!paragraph.getText().isEmpty())
+        paragraphsList.add(paragraph.getText());
     }
     return paragraphsList;
   }
