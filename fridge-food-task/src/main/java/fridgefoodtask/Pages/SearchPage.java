@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import fridgefoodtask.Components.Navbar;
-import fridgefoodtask.Components.RecipeCard;
+import fridgefoodtask.Components.Card;
 
 public class SearchPage extends Navbar {
   JavascriptExecutor JavaScript;
@@ -26,7 +26,7 @@ public class SearchPage extends Navbar {
     List<String[]> results = new ArrayList<String[]>();
     firstPageResults = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']"));
     for (WebElement result : firstPageResults) {
-      RecipeCard recipeCard = new RecipeCard(driver, result);
+      Card recipeCard = new Card(driver, result);
       String resultLink = recipeCard.getRecipeCardLink();
       String resultName = recipeCard.getRecipeCardName();
       String resultCategory = recipeCard.getRecipeCardCategory();
@@ -41,7 +41,7 @@ public class SearchPage extends Navbar {
     List<String[]> results = new ArrayList<String[]>();
     firstPageResults = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']"));
     for (WebElement result : firstPageResults) {
-      RecipeCard recipeCard = new RecipeCard(driver, result);
+      Card recipeCard = new Card(driver, result);
       String resultLink = recipeCard.getRecipeCardLink();
       String resultName = recipeCard.getRecipeCardName();
       String resultCookingTime = recipeCard.getRecipeCardCookingTime();
@@ -62,7 +62,7 @@ public class SearchPage extends Navbar {
 
   public void clickSelectBookmarksBtn(int index) {
     selectResult = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']")).get(index);
-    RecipeCard recipeCard = new RecipeCard(driver, selectResult);
+    Card recipeCard = new Card(driver, selectResult);
     recipeCard.clickBookmarksBtn();
   }
 }

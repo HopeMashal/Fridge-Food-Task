@@ -6,11 +6,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class RecipeCard {
+public class Card {
   WebDriver driver;
   WebElement recipeElement;
 
-  public RecipeCard(WebDriver driver, WebElement recipe) {
+  public Card(WebDriver driver, WebElement recipe) {
     this.driver = driver;
     recipeElement = recipe;
   }
