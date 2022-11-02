@@ -5,6 +5,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import fridgefoodtask.Core.Constant;
+
 public class Navbar {
   public WebDriver driver;
   WebElement homeBtn;
@@ -24,12 +26,12 @@ public class Navbar {
   }
 
   public void clickLoginBtn() {
-    loginBtn = driver.findElement(By.linkText("Login"));
+    loginBtn = driver.findElement(By.xpath("//div/a[@href='/login']"));
     loginBtn.click();
   }
 
   public void clickLogoutBtn() {
-    logoutBtn = driver.findElement(By.linkText("Logout"));
+    logoutBtn = driver.findElement(By.xpath("//div[contains(@class,'header-right-links')]/a[@href='#']"));
     logoutBtn.click();
   }
 
@@ -39,37 +41,37 @@ public class Navbar {
   }
 
   public void clickBookmarksBtn() {
-    bookmarksBtn = driver.findElement(By.linkText("Bookmarks"));
+    bookmarksBtn = driver.findElement(By.xpath("//li[@class='header-left-links']/a[@href='/bookmarks/']"));
     bookmarksBtn.click();
   }
 
   public void clickContestsBtn() {
-    contestsBtn = driver.findElement(By.linkText("Contests"));
+    contestsBtn = driver.findElement(By.xpath("//li[@class='header-left-links']/a[@href='/contests/']"));
     contestsBtn.click();
   }
 
   public void clickTipsBtn() {
-    tipsBtn = driver.findElement(By.linkText("Tips"));
+    tipsBtn = driver.findElement(By.xpath("//li[@class='header-left-links']/a[@href='/tips/']"));
     tipsBtn.click();
   }
 
   public void clickSubmitRecipeBtn() {
-    submitRecipeBtn = driver.findElement(By.linkText("Submit a Recipe"));
+    submitRecipeBtn = driver.findElement(By.xpath("//li[@class='header-left-links']/a[@href='/submit-a-recipe/']"));
     submitRecipeBtn.click();
   }
 
   public void clickDeciderBtn() {
-    deciderBtn = driver.findElement(By.linkText("Decider"));
+    deciderBtn = driver.findElement(By.xpath("//li[@class='header-left-links']/a[@href='/decider/']"));
     deciderBtn.click();
   }
 
   public void clickCopyrightPolicyBtn() {
-    copyrightPolicyBtn = driver.findElement(By.linkText("Copyright Policy"));
+    copyrightPolicyBtn = driver.findElement(By.xpath("//li[@class='header-left-links']/a[@href='/copyright-policy/']"));
     copyrightPolicyBtn.click();
   }
 
   public void clickMyProfileBtn() {
-    myProfileBtn = driver.findElement(By.linkText("My Profile"));
+    myProfileBtn = driver.findElement(By.xpath("//div[contains(@class,'horizontal')]//a[@href='/myprofile']"));
     myProfileBtn.click();
   }
 
@@ -81,76 +83,82 @@ public class Navbar {
   }
 
   public String[] bookmarksHref() {
-    bookmarksBtn = driver.findElement(By.linkText("Bookmarks"));
+    bookmarksBtn = driver.findElement(By.xpath("//li[@class='header-left-links']/a[@href='/bookmarks/']"));
     String bookmarksHrefValue = bookmarksBtn.getAttribute("href");
     String[] bookmarksList = new String[] { "MyFridgeFood - Bookmarks", bookmarksHrefValue };
     return bookmarksList;
   }
 
   public String[] contestsHref() {
-    contestsBtn = driver.findElement(By.linkText("Contests"));
+    contestsBtn = driver.findElement(By.xpath("//li[@class='header-left-links']/a[@href='/contests/']"));
     String contestsHrefValue = contestsBtn.getAttribute("href");
     String[] contestsList = new String[] { "MyFridgeFood - Contests", contestsHrefValue };
     return contestsList;
   }
 
   public String[] tipsHref() {
-    tipsBtn = driver.findElement(By.linkText("Tips"));
+    tipsBtn = driver.findElement(By.xpath("//li[@class='header-left-links']/a[@href='/tips/']"));
     String tipsHrefValue = tipsBtn.getAttribute("href");
     String[] tipsList = new String[] { "MyFridgeFood - Tips", tipsHrefValue };
     return tipsList;
   }
 
   public String[] submitRecipeHref() {
-    submitRecipeBtn = driver.findElement(By.linkText("Submit a Recipe"));
+    submitRecipeBtn = driver.findElement(By.xpath("//li[@class='header-left-links']/a[@href='/submit-a-recipe/']"));
     String submitRecipeHrefValue = submitRecipeBtn.getAttribute("href");
     String[] submitRecipeList = new String[] { "MyFridgeFood - Submit a Recipe", submitRecipeHrefValue };
     return submitRecipeList;
   }
 
   public String[] deciderHref() {
-    deciderBtn = driver.findElement(By.linkText("Decider"));
+    deciderBtn = driver.findElement(By.xpath("//li[@class='header-left-links']/a[@href='/decider/']"));
     String deciderHrefValue = deciderBtn.getAttribute("href");
     String[] deciderList = new String[] { "MyFridgeFood - The Decider", deciderHrefValue };
     return deciderList;
   }
 
   public String[] copyrightPolicyHref() {
-    copyrightPolicyBtn = driver.findElement(By.linkText("Copyright Policy"));
+    copyrightPolicyBtn = driver.findElement(By.xpath("//li[@class='header-left-links']/a[@href='/copyright-policy/']"));
     String copyrightPolicyHrefValue = copyrightPolicyBtn.getAttribute("href");
     String[] copyrightPolicyList = new String[] { "MyFridgeFood - Copyright Policy", copyrightPolicyHrefValue };
     return copyrightPolicyList;
   }
 
   public String[] myProfileHref() {
-    myProfileBtn = driver.findElement(By.linkText("My Profile"));
+    myProfileBtn = driver.findElement(By.xpath("//div[contains(@class,'horizontal')]//a[@href='/myprofile']"));
     String myProfileHrefValue = myProfileBtn.getAttribute("href");
     String[] myProfileList = new String[] { "MyFridgeFood - MyProfile", myProfileHrefValue };
     return myProfileList;
   }
 
   public String[] searchHref(String search) {
-    String searchHrefValue = "/Search?q=" + search.replace(" ", "%20");
+    String searchHrefValue = Constant.getURL() + "/Search?q=" + search.replace(" ", "%20");
     String[] searchList = new String[] { "MyFridgeFood - Search", searchHrefValue };
     return searchList;
   }
 
   public String[] searchIngredientsHref() {
-    String searchHrefValue = "/search-by-ingredients";
+    String searchHrefValue = Constant.getURL() + "/search-by-ingredients";
     String[] searchList = new String[] { "MyFridgeFood - Search By Ingredients", searchHrefValue };
     return searchList;
   }
 
   public String[] loginHref() {
-    String loginHrefValue = "/login";
+    String loginHrefValue = Constant.getURL() + "/login";
     String[] loginList = new String[] { "MyFridgeFood - login", loginHrefValue };
     return loginList;
   }
 
   public String[] registerHref() {
-    String registerHrefValue = "/register";
+    String registerHrefValue = Constant.getURL() + "/register";
     String[] registerList = new String[] { "MyFridgeFood - Register", registerHrefValue };
     return registerList;
+  }
+
+  public String[] logoutHref() {
+    String logoutHrefValue = Constant.getURL() + "/#";
+    String[] logoutList = new String[] { "MyFridgeFood - Home", logoutHrefValue };
+    return logoutList;
   }
 
   public void searchMethod(String search) {
