@@ -1,11 +1,13 @@
 package fridgefoodtask.Pages;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import fridgefoodtask.Components.Navbar;
 
@@ -22,6 +24,7 @@ public class SubmitRecipePage extends Navbar {
   WebElement servingsBox;
   WebElement ingredientsListBox;
   WebElement directionsBox;
+  WebElement submitRecipeBtn;
 
   public SubmitRecipePage(WebDriver driver) {
     super(driver);
@@ -42,7 +45,32 @@ public class SubmitRecipePage extends Navbar {
     return paragraphList;
   }
 
-  public void fullSubmitRecipe(){
-    
+  public void fullSubmitRecipe(String name, String email, String recipeName, String recipeImgPath, String photoCredit,
+      String briefDesc, String cookingTime, String servings, String ingredientsList, String direction) {
+    nameBox = driver.findElement(By.className("txtAuthor"));
+    nameBox.sendKeys(name);
+    emailBox = driver.findElement(By.className("txtEmail"));
+    emailBox.sendKeys(email);
+    recipeNameBox = driver.findElement(By.className("txtRecipeName"));
+    recipeNameBox.sendKeys(recipeName);
+    recipeImgBox = driver.findElement(By.cssSelector("input[type='file']"));
+    File file = new File(recipeImgPath);
+    recipeImgBox.sendKeys(file.getAbsolutePath());
+    photoCreditBox = driver.findElement(By.className("txtCredit"));
+    photoCreditBox.sendKeys(photoCredit);
+    briefDescriptionBox = driver.findElement(By.className("txtDescription"));
+    briefDescriptionBox.sendKeys(briefDesc);
+    cookingTimeBtn = driver.findElement(By.className("slctTimes"));
+    Select cookTime = new Select(cookingTimeBtn);
+    cookTime.selectByValue(cookingTime);
+    servingsBox = driver.findElement(By.className("slctServings"));
+    Select serving = new Select(servingsBox);
+    serving.selectByValue(servings);
+    ingredientsListBox = driver.findElement(By.className("txtIngredients"));
+    ingredientsListBox.sendKeys(ingredientsList);
+    directionsBox = driver.findElement(By.className("txtDirections"));
+    directionsBox.sendKeys(direction);
+    submitRecipeBtn = driver.findElement(By.xpath("//div[contains(@class,'SubmitRecipe')]"));
+    submitRecipeBtn.click();
   }
 }
