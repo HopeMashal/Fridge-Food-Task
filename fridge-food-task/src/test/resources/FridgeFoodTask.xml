@@ -1,23 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Final Project (Chrome) - www.myfridgefood.com">
-  <test name="Navbar Test - Before Sign in">
-    <classes>
-      <class name="fridgefoodtask.PagesTest.NavbarTest">
-        <methods>
-          <include name="BeforeSignIn" />
-        </methods>
-      </class>
-    </classes>
-  </test>
-  <test name="Navbar Test - After Sign in">
-    <classes>
-      <class name="fridgefoodtask.PagesTest.NavbarTest">
-        <methods>
-          <include name="AfterSignIn" />
-        </methods>
-      </class>
-    </classes>
-  </test>
   <test name="SignIn Test">
     <classes>
       <class name="fridgefoodtask.PagesTest.SignInTest" />
