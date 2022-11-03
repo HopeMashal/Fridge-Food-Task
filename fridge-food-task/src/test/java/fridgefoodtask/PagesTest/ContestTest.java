@@ -55,7 +55,7 @@ public class ContestTest extends TaskBase {
     File contestArchivedFile = new File(Constant.getCSVFilesPath() + "ContestsArchivedOutput.csv");
     CSVFile.writeDataLineByLine(contestArchivedFile.getPath(),
         contestsPage.getArchivedContest(),
-        new String[] { "Archived Title", "Archived Date" });
+        new String[] { "Archived Title", "Archived Date", "Archived Link" });
 
     Allure.step("Attach the Contests Archived Output File");
     allureAttached.addFile(contestArchivedFile, "csv");

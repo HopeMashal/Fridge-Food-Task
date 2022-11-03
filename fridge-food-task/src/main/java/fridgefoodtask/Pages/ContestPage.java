@@ -65,7 +65,8 @@ public class ContestPage extends Navbar {
     for (WebElement element : archivedContest) {
       String archivedTitle = element.findElement(By.tagName("a")).getText();
       String archivedDate = element.findElement(By.tagName("span")).getText();
-      archivedContestsList.add(new String[] { archivedTitle, archivedDate });
+      String archivedHref = element.findElement(By.tagName("a")).getAttribute("href");
+      archivedContestsList.add(new String[] { archivedTitle, archivedDate, archivedHref });
     }
     return archivedContestsList;
   }
