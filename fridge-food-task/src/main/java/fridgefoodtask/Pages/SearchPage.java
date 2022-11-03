@@ -57,12 +57,12 @@ public class SearchPage extends Navbar {
   public void clickSelectResult(int index) {
     selectResult = driver
         .findElements(By.cssSelector("div[class='line-item-body']>a")).get(index);
-    JavaScript.executeScript("arguments[" + index + "].click();", selectResult);
+    JavaScript.executeScript("arguments[0].click();", selectResult);
   }
 
   public void clickSelectBookmarksBtn(int index) {
     selectResult = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']")).get(index);
     Card recipeCard = new Card(driver, selectResult);
-    recipeCard.clickBookmarksBtn();
+    recipeCard.clickCardBookmarksBtn();
   }
 }

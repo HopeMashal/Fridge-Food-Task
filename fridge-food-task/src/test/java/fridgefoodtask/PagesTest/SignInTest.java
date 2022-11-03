@@ -32,14 +32,14 @@ public class SignInTest extends TaskBase {
     Allure.step("Fill Data For Sign In Method");
     signInPage.signInMethod(email, password);
 
-    Allure.step("After Fill Data In Log In Page - Take Screen Shot");
+    Allure.step("After Fill Data in Log In Page - Take Screen Shot");
     File afterFillDataInLogInPage = takeScreenShot
         .takeScreenShot(Constant.getScreenShotsPath() + "SignInTest/afterFillDataInLogInPage.jpg");
     Allure.addAttachment(
         afterFillDataInLogInPage.getName(),
         FileUtils.openInputStream(afterFillDataInLogInPage));
 
-    Allure.step("Click Submit Button In Log In Page");
+    Allure.step("Click Submit Button in Log In Page");
     signInPage.clickSubmitBtn();
 
     Allure.step("Accept Alert - Login Message");

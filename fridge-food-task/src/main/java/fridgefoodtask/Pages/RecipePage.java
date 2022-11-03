@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -15,6 +16,7 @@ import fridgefoodtask.Core.Constant;
 import fridgefoodtask.Core.DownloadFile;
 
 public class RecipePage extends Navbar {
+  JavascriptExecutor JavaScript;
   WebElement recipeName;
   List<WebElement> recipeTable;
   WebElement recipeImg;
@@ -23,6 +25,7 @@ public class RecipePage extends Navbar {
 
   public RecipePage(WebDriver driver) {
     super(driver);
+    JavaScript = (JavascriptExecutor) driver;
     // TODO Auto-generated constructor stub
   }
 
@@ -54,9 +57,9 @@ public class RecipePage extends Navbar {
     return image.getPath();
   }
 
-  public void clickBookmarksBtn() {
-    bookmarksBtn = driver.findElement(By.id("bookmark-it"));
-    bookmarksBtn.click();
+  public void clickRecipeBookmarksBtn() {
+    bookmarksBtn = driver.findElement(By.cssSelector("div>a[id='bookmark-it']"));
+    JavaScript.executeScript("arguments[0].click();", bookmarksBtn);
   }
 
   public List<String[]> getRecipeInformation() {

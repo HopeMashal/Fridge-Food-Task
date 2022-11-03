@@ -61,9 +61,9 @@ public class Card {
     return recipeCardIngredientsValue;
   }
 
-  public void clickBookmarksBtn() {
+  public void clickCardBookmarksBtn() {
     WebElement bookmarksBtn = recipeElement
-        .findElement(By.xpath("//div[contains(@class,'recipe-results-bookmark')]/span"));
+        .findElement(By.cssSelector("div[class='recipe-results-bookmark']>span"));
     bookmarksBtn.click();
   }
 }

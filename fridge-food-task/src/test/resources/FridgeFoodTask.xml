@@ -5,4 +5,9 @@
       <class name="fridgefoodtask.PagesTest.SignInTest" />
     </classes>
   </test>
+  <test name="Search and Recipe Test">
+    <classes>
+      <class name="fridgefoodtask.PagesTest.SearchTest" />
+    </classes>
+  </test>
 </suite>

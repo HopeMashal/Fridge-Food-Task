@@ -4,12 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
@@ -19,6 +17,7 @@ import io.qameta.allure.Allure;
 public class TaskBase {
   public static WebDriver driver;
   public static TakeScreenShot takeScreenShot;
+  public static AllureAttached allureAttached = new AllureAttached();
 
   @BeforeSuite
   public void beforeSuite() throws IOException {
@@ -34,9 +33,7 @@ public class TaskBase {
     Allure.step("After Open MyFridgeFood.com - Take Screen Shot");
     File afterOpenMyFridgeFoodPage = takeScreenShot
         .takeScreenShot(Constant.getScreenShotsPath() + "TaskBase/afterOpenMyFridgeFoodPage.jpg");
-    Allure.addAttachment(
-        afterOpenMyFridgeFoodPage.getName(),
-        FileUtils.openInputStream(afterOpenMyFridgeFoodPage));
+    allureAttached.addImage(afterOpenMyFridgeFoodPage);
   }
 
   @BeforeTest
@@ -51,28 +48,16 @@ public class TaskBase {
     Assert.assertEquals(driver.getCurrentUrl(), homeHref[1], "URL of Home Page NOT MATCH");
   }
 
-  @AfterTest
-  public void afterTest() {
-
-  }
-
   @AfterSuite
   public void afterSuite() throws IOException {
     Allure.step("Click Log Out Button");
     Navbar navbar = new Navbar(driver);
     navbar.clickLogoutBtn();
 
-    Allure.step("After Log Out - Check URL & Title of Home Page");
-    String[] homeHref = navbar.logoutHref();
-    Assert.assertEquals(driver.getTitle(), homeHref[0], "Title of Home Page NOT MATCH");
-    Assert.assertEquals(driver.getCurrentUrl(), homeHref[1], "URL of Home Page NOT MATCH");
-
     Allure.step("After Click Log Out Button - Take Screen Shot");
     File afterClickLogOutBtn = takeScreenShot
         .takeScreenShot(Constant.getScreenShotsPath() + "TaskBase/afterClickLogOutBtn.jpg");
-    Allure.addAttachment(
-        afterClickLogOutBtn.getName(),
-        FileUtils.openInputStream(afterClickLogOutBtn));
+    allureAttached.addImage(afterClickLogOutBtn);
 
     Allure.step("Close Headless Chrome Browser");
     driver.quit();

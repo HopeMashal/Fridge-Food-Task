@@ -155,12 +155,6 @@ public class Navbar {
     return registerList;
   }
 
-  public String[] logoutHref() {
-    String logoutHrefValue = Constant.getURL() + "/#";
-    String[] logoutList = new String[] { "MyFridgeFood - Home", logoutHrefValue };
-    return logoutList;
-  }
-
   public void searchMethod(String search) {
     searchBox = driver.findElement(By.id("search-box"));
     searchBox.sendKeys(search);
