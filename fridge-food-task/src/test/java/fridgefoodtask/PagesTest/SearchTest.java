@@ -39,6 +39,12 @@ public class SearchTest extends TaskBase {
 
   @Test(dataProvider = "getInputCSVData")
   public void SearchTesting(String searchKeyWord) throws IOException, InvalidFormatException {
+    Allure.step("Get Data From searchInput.csv File Using Data Provider");
+
+    Allure.step("Attach searchInput.csv File");
+    File searchInputFile = new File(Constant.getCSVFilesPath() + "searchInput.csv");
+    allureAttached.addFile(searchInputFile, "csv");
+
     Allure.step("Go to Search Page  (" + searchKeyWord + ")  Using Navbar Method");
     SearchPage searchPage = new SearchPage(driver);
     searchPage.searchMethod(searchKeyWord);
@@ -103,7 +109,7 @@ public class SearchTest extends TaskBase {
 
     Allure.step("Attach the " + searchKeyWord + " Recipe Page File");
     File recipeFile = new File(Constant.getWordFilesPath() + searchKeyWord + "RecipePage.docx");
-    allureAttached.addFile(recipeFile, "docx");
+    allureAttached.addFile(recipeFile, "doc");
 
     Allure.step("Scroll Down 700px to Show Bookmarks Button in Recipe Page (" + searchKeyWord + ") ");
     JavaScript.executeScript("window.scrollTo(0,700)");

@@ -54,11 +54,6 @@ public class TaskBase {
     Navbar navbar = new Navbar(driver);
     navbar.clickLogoutBtn();
 
-    Allure.step("After Click Log Out Button - Take Screen Shot");
-    File afterClickLogOutBtn = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "TaskBase/afterClickLogOutBtn.jpg");
-    allureAttached.addImage(afterClickLogOutBtn);
-
     Allure.step("Close Headless Chrome Browser");
     driver.quit();
   }

@@ -29,6 +29,10 @@ public class SignInTest extends TaskBase {
     String email = PropertiesFile.getProperty(Constant.getPropertiesFilesPath() + "props.properties", "email");
     String password = PropertiesFile.getProperty(Constant.getPropertiesFilesPath() + "props.properties", "password");
 
+    Allure.step("Attach props.properties File");
+    File propertiesFile = new File(Constant.getPropertiesFilesPath() + "props.properties");
+    allureAttached.addFile(propertiesFile, "txt");
+
     Allure.step("Fill Data For Sign In Method");
     signInPage.signInMethod(email, password);
 
