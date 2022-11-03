@@ -36,14 +36,14 @@ public class BookmarksTest extends TaskBase {
     Allure.step("Write the Bookmarks Page Output File");
     File bookmarksPageFile = new File(Constant.getCSVFilesPath() + "BookmarksPageOutput.csv");
     CSVFile.writeDataLineByLine(bookmarksPageFile.getPath(),
-        bookmarksPage.getBookmarksResults(),
+        bookmarksPage.getFirstPageResults(),
         new String[] { "Recipe Name", "Recipe Link", "Recipe Category", "Recipe Image Source" });
 
     Allure.step("Attach the Bookmarks Page Output File");
     allureAttached.addFile(bookmarksPageFile, "csv");
 
     Allure.step("Click Delete Bookmarks Button For Third Element");
-    bookmarksPage.deleteSelectBookmarks(2);
+    bookmarksPage.clickSelectBookmarksBtn(2);
     Thread.sleep(2000);
 
     Allure.step("After Click Delete Bookmarks Button For Third Element - Take Screen Shot");

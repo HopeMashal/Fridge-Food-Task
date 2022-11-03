@@ -6,30 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import fridgefoodtask.Components.Navbar;
+import fridgefoodtask.Components.Result;
 
-public class BookmarksPage extends Navbar {
+public class BookmarksPage extends Result {
   List<WebElement> bookmarksResults;
 
   public BookmarksPage(WebDriver driver) {
     super(driver);
     // TODO Auto-generated constructor stub
-  }
-
-  public List<String[]> getBookmarksResults() {
-    SearchPage bookmarksPage = new SearchPage(driver);
-    List<String[]> bookmarkResults = bookmarksPage.getFirstPageResults();
-    return bookmarkResults;
-  }
-
-  public void deleteSelectBookmarks(int index) {
-    SearchPage bookmarksPage = new SearchPage(driver);
-    bookmarksPage.clickSelectBookmarksBtn(index);
-  }
-
-  public void clickSelectBookmarksResult(int index) {
-    SearchPage bookmarksPage = new SearchPage(driver);
-    bookmarksPage.clickSelectResult(index);
   }
 
   public int getBookmarksNumbers() {
@@ -41,7 +25,7 @@ public class BookmarksPage extends Navbar {
     int size = getBookmarksNumbers();
     for (int i = 0; i < size; i++) {
       int index = size - 1 - i;
-      deleteSelectBookmarks(index);
+      super.clickSelectBookmarksBtn(index);
     }
   }
 }
