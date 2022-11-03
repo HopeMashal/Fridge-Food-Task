@@ -21,15 +21,20 @@ public class SearchPage extends Result {
   public List<String[]> getHomeSearchFirstPageResults() {
     List<String[]> results = new ArrayList<String[]>();
     firstPageResults = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']"));
-    for (WebElement result : firstPageResults) {
-      Card recipeCard = new Card(driver, result);
-      String resultLink = recipeCard.getRecipeCardLink();
-      String resultName = recipeCard.getRecipeCardName();
-      String resultCookingTime = recipeCard.getRecipeCardCookingTime();
-      String resultImgSrc = recipeCard.getRecipeCardImgSrc();
-      String resultIngredients = recipeCard.getRecipeCardIngredients();
-      String[] resultValues = new String[] { resultName, resultLink, resultCookingTime, resultImgSrc,
-          resultIngredients };
+    if (!firstPageResults.isEmpty()) {
+      for (WebElement result : firstPageResults) {
+        Card recipeCard = new Card(driver, result);
+        String resultLink = recipeCard.getRecipeCardLink();
+        String resultName = recipeCard.getRecipeCardName();
+        String resultCookingTime = recipeCard.getRecipeCardCookingTime();
+        String resultImgSrc = recipeCard.getRecipeCardImgSrc();
+        String resultIngredients = recipeCard.getRecipeCardIngredients();
+        String[] resultValues = new String[] { resultName, resultLink, resultCookingTime, resultImgSrc,
+            resultIngredients };
+        results.add(resultValues);
+      }
+    } else {
+      String[] resultValues = new String[] { "NO RESULT", "NO RESULT", "NO RESULT", "NO RESULT", "NO RESULT" };
       results.add(resultValues);
     }
     return results;

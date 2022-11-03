@@ -1,15 +1,11 @@
 package fridgefoodtask.Pages;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import fridgefoodtask.Components.Result;
 
 public class BookmarksPage extends Result {
-  List<WebElement> bookmarksResults;
 
   public BookmarksPage(WebDriver driver) {
     super(driver);

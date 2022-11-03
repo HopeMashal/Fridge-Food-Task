@@ -16,19 +16,24 @@ public class Result extends Navbar {
   public Result(WebDriver driver) {
     super(driver);
     JavaScript = (JavascriptExecutor) driver;
-    //TODO Auto-generated constructor stub
+    // TODO Auto-generated constructor stub
   }
-  
+
   public List<String[]> getFirstPageResults() {
     List<String[]> results = new ArrayList<String[]>();
     firstPageResults = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']"));
-    for (WebElement result : firstPageResults) {
-      Card recipeCard = new Card(driver, result);
-      String resultLink = recipeCard.getRecipeCardLink();
-      String resultName = recipeCard.getRecipeCardName();
-      String resultCategory = recipeCard.getRecipeCardCategory();
-      String resultImgSrc = recipeCard.getRecipeCardImgSrc();
-      String[] resultValues = new String[] { resultName, resultLink, resultCategory, resultImgSrc };
+    if (!firstPageResults.isEmpty()) {
+      for (WebElement result : firstPageResults) {
+        Card recipeCard = new Card(driver, result);
+        String resultLink = recipeCard.getRecipeCardLink();
+        String resultName = recipeCard.getRecipeCardName();
+        String resultCategory = recipeCard.getRecipeCardCategory();
+        String resultImgSrc = recipeCard.getRecipeCardImgSrc();
+        String[] resultValues = new String[] { resultName, resultLink, resultCategory, resultImgSrc };
+        results.add(resultValues);
+      }
+    } else {
+      String[] resultValues = new String[] { "NO RESULT", "NO RESULT", "NO RESULT", "NO RESULT" };
       results.add(resultValues);
     }
     return results;

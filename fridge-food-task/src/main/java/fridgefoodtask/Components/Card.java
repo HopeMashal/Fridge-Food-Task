@@ -61,6 +61,17 @@ public class Card {
     return recipeCardIngredientsValue;
   }
 
+  public String getDeciderCardName() {
+    String recipeCardName = recipeElement.findElement(By.cssSelector("div[class='line-item-body']>div>a")).getText();
+    return recipeCardName;
+  }
+
+  public String getDeciderCardDetails() {
+    String recipeCardCategory = recipeElement.findElement(By.cssSelector("div[class='line-item-details']>p")).getText()
+        .replace(": \n", ": ");
+    return recipeCardCategory;
+  }
+
   public void clickCardBookmarksBtn() {
     WebElement bookmarksBtn = recipeElement
         .findElement(By.cssSelector("div[class='recipe-results-bookmark']>span"));
