@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -51,11 +50,10 @@ public class SearchTest extends TaskBase {
 
     Allure.step("Check URL & Title of Search Page (" + searchKeyWord + ") ");
     String[] searchHref = searchPage.searchHref(searchKeyWord);
-    Assert.assertEquals(driver.getTitle(), searchHref[0], "Title of Search Page NOT MATCH");
-    Assert.assertEquals(driver.getCurrentUrl(), searchHref[1], "URL of Search Page NOT MATCH");
+    Assert.assertEquals(driver.getTitle(), searchHref[0], "Title of Search Page (" + searchKeyWord + ") NOT MATCH");
+    Assert.assertEquals(driver.getCurrentUrl(), searchHref[1], "URL of Search Page (" + searchKeyWord + ") NOT MATCH");
 
     Allure.step("Scroll Down 350px to Show Recipe Results (" + searchKeyWord + ") ");
-    JavascriptExecutor JavaScript = (JavascriptExecutor) driver;
     JavaScript.executeScript("window.scrollTo(0,350)");
 
     Allure.step("Search Results Page (" + searchKeyWord + ") - Take Screen Shot");
@@ -64,12 +62,12 @@ public class SearchTest extends TaskBase {
     allureAttached.addImage(searchResultsPage);
 
     Allure.step("Write the " + searchKeyWord + " Search Page Output File");
-    CSVFile.writeDataLineByLine(Constant.getCSVFilesPath() + searchKeyWord + "SearchPageOutput.csv",
+    File searchPageFile = new File(Constant.getCSVFilesPath() + searchKeyWord + "SearchPageOutput.csv");
+    CSVFile.writeDataLineByLine(searchPageFile.getPath(),
         searchPage.getFirstPageResults(),
         new String[] { "Recipe Name", "Recipe Link", "Recipe Category", "Recipe Image Source" });
 
     Allure.step("Attach the " + searchKeyWord + " Search Page Output File");
-    File searchPageFile = new File(Constant.getCSVFilesPath() + searchKeyWord + "SearchPageOutput.csv");
     allureAttached.addFile(searchPageFile, "csv");
 
     Allure.step("Click Bookmarks Button For Second Result (" + searchKeyWord + ") ");
@@ -95,7 +93,8 @@ public class SearchTest extends TaskBase {
     allureAttached.addImage(firstResultPage);
 
     Allure.step("Write the " + searchKeyWord + " Recipe Page File");
-    WordFile wordFile = new WordFile(Constant.getWordFilesPath() + searchKeyWord + "RecipePage.docx");
+    String wordFilePath = Constant.getWordFilesPath() + searchKeyWord + "RecipePage.docx";
+    WordFile wordFile = new WordFile(wordFilePath);
     wordFile.AddHeader(driver.getTitle());
     wordFile.AddFooter(driver.getCurrentUrl());
     wordFile.AddTitle(recipePage.getRecipeName());
@@ -108,7 +107,7 @@ public class SearchTest extends TaskBase {
     wordFile.WriteWordFile();
 
     Allure.step("Attach the " + searchKeyWord + " Recipe Page File");
-    File recipeFile = new File(Constant.getWordFilesPath() + searchKeyWord + "RecipePage.docx");
+    File recipeFile = new File(wordFilePath);
     allureAttached.addFile(recipeFile, "doc");
 
     Allure.step("Scroll Down 700px to Show Bookmarks Button in Recipe Page (" + searchKeyWord + ") ");

@@ -2,6 +2,7 @@ package fridgefoodtask.Pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -29,5 +30,18 @@ public class BookmarksPage extends Navbar {
   public void clickSelectBookmarksResult(int index) {
     SearchPage bookmarksPage = new SearchPage(driver);
     bookmarksPage.clickSelectResult(index);
+  }
+
+  public int getBookmarksNumbers() {
+    int bookmarksNumbers = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']")).size();
+    return bookmarksNumbers;
+  }
+
+  public void deleteAllBookmarksResult() {
+    int size = getBookmarksNumbers();
+    for (int i = 0; i < size; i++) {
+      int index = size - 1 - i;
+      deleteSelectBookmarks(index);
+    }
   }
 }

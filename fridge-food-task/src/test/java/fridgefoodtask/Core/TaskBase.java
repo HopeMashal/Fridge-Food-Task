@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
@@ -18,12 +19,14 @@ public class TaskBase {
   public static WebDriver driver;
   public static TakeScreenShot takeScreenShot;
   public static AllureAttached allureAttached = new AllureAttached();
+  public static JavascriptExecutor JavaScript;
 
   @BeforeSuite
   public void beforeSuite() throws IOException {
     Allure.step("Open Headless Chrome Browser");
     driver = OpenBrowser.openChromeWithOptions();
     takeScreenShot = new TakeScreenShot(driver);
+    JavaScript = (JavascriptExecutor) driver;
     driver.manage().window().setSize(new Dimension(1280, 900));
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(100));
 

@@ -26,11 +26,12 @@ public class SignInTest extends TaskBase {
     Assert.assertEquals(driver.getCurrentUrl(), loginHref[1], "URL of Login Page NOT MATCH");
 
     Allure.step("Get Data From props.properties File");
-    String email = PropertiesFile.getProperty(Constant.getPropertiesFilesPath() + "props.properties", "email");
-    String password = PropertiesFile.getProperty(Constant.getPropertiesFilesPath() + "props.properties", "password");
+    String propFilePath = Constant.getPropertiesFilesPath() + "props.properties";
+    String email = PropertiesFile.getProperty(propFilePath, "email");
+    String password = PropertiesFile.getProperty(propFilePath, "password");
 
     Allure.step("Attach props.properties File");
-    File propertiesFile = new File(Constant.getPropertiesFilesPath() + "props.properties");
+    File propertiesFile = new File(propFilePath);
     allureAttached.addFile(propertiesFile, "txt");
 
     Allure.step("Fill Data For Sign In Method");
