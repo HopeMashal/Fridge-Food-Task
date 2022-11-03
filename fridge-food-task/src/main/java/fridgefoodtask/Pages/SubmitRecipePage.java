@@ -70,6 +70,9 @@ public class SubmitRecipePage extends Navbar {
     ingredientsListBox.sendKeys(ingredientsList);
     directionsBox = driver.findElement(By.className("txtDirections"));
     directionsBox.sendKeys(direction);
+  }
+
+  public void clickSubmitBtn() {
     submitRecipeBtn = driver.findElement(By.xpath("//div[contains(@class,'SubmitRecipe')]"));
     submitRecipeBtn.click();
   }

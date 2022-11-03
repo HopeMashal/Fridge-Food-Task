@@ -48,6 +48,9 @@ public class RegisterPage extends Navbar {
     passwordBox.sendKeys(password);
     confirmPasswordBox = driver.findElement(By.id("txtconfirmpassword"));
     confirmPasswordBox.sendKeys(password);
+  }
+
+  public void clickSubmitBtn() {
     submitBtn = driver.findElement(By.id("getbutton"));
     submitBtn.click();
   }

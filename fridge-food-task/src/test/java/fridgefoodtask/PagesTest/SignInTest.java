@@ -25,19 +25,22 @@ public class SignInTest extends TaskBase {
     Assert.assertEquals(driver.getTitle(), loginHref[0], "Title of Login Page NOT MATCH");
     Assert.assertEquals(driver.getCurrentUrl(), loginHref[1], "URL of Login Page NOT MATCH");
 
-    Allure.step("After Click Log In Button - Take Screen Shot");
-    File afterClickLogInBtn = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "SignInTest/afterClickLogInBtn.jpg");
-    Allure.addAttachment(
-        afterClickLogInBtn.getName(),
-        FileUtils.openInputStream(afterClickLogInBtn));
-
     Allure.step("Get Data From props.properties File");
     String email = PropertiesFile.getProperty(Constant.getPropertiesFilesPath() + "props.properties", "email");
     String password = PropertiesFile.getProperty(Constant.getPropertiesFilesPath() + "props.properties", "password");
 
     Allure.step("Fill Data For Sign In Method");
     signInPage.signInMethod(email, password);
+
+    Allure.step("After Fill Data In Log In Page - Take Screen Shot");
+    File afterFillDataInLogInPage = takeScreenShot
+        .takeScreenShot(Constant.getScreenShotsPath() + "SignInTest/afterFillDataInLogInPage.jpg");
+    Allure.addAttachment(
+        afterFillDataInLogInPage.getName(),
+        FileUtils.openInputStream(afterFillDataInLogInPage));
+
+    Allure.step("Click Submit Button In Log In Page");
+    signInPage.clickSubmitBtn();
 
     Allure.step("Accept Alert - Login Message");
     try {

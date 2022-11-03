@@ -22,11 +22,15 @@ public class SignInPage extends Navbar {
     emailBox.sendKeys(email);
     passwordBox = driver.findElement(By.id("txtpassword"));
     passwordBox.sendKeys(password);
+  }
+
+  public void clickSubmitBtn() {
     loginBtn = driver.findElement(By.id("getbutton"));
     loginBtn.click();
   }
 
   public void clickRegisterBtn() {
     registerBtn = driver.findElement(By.id("registration"));
+    registerBtn.click();
   }
 }
