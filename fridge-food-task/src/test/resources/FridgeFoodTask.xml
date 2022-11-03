@@ -15,4 +15,9 @@
       <class name="fridgefoodtask.PagesTest.BookmarksTest" />
     </classes>
   </test>
+  <test name="Contests Page Test">
+    <classes>
+      <class name="fridgefoodtask.PagesTest.ContestTest" />
+    </classes>
+  </test>
 </suite>

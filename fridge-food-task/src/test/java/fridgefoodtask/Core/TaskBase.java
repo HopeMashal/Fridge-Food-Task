@@ -7,10 +7,8 @@ import java.time.Duration;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 
 import fridgefoodtask.Components.Navbar;
 import io.qameta.allure.Allure;
@@ -37,18 +35,6 @@ public class TaskBase {
     File afterOpenMyFridgeFoodPage = takeScreenShot
         .takeScreenShot(Constant.getScreenShotsPath() + "TaskBase/afterOpenMyFridgeFoodPage.jpg");
     allureAttached.addImage(afterOpenMyFridgeFoodPage);
-  }
-
-  @BeforeTest
-  public void beforeTest() {
-    Allure.step("Go to Home Page Using Navbar Method");
-    Navbar navbar = new Navbar(driver);
-    navbar.clickHomeBtn();
-
-    Allure.step("Check URL & Title of Home Page");
-    String[] homeHref = navbar.homeHref();
-    Assert.assertEquals(driver.getTitle(), homeHref[0], "Title of Home Page NOT MATCH");
-    Assert.assertEquals(driver.getCurrentUrl(), homeHref[1], "URL of Home Page NOT MATCH");
   }
 
   @AfterSuite
