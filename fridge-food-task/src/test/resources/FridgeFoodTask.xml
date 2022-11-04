@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Final Project (Chrome) - www.myfridgefood.com">
-  <test name="SignIn Page Test">
+  <test name="LogIn Page Test">
     <classes>
-      <class name="fridgefoodtask.PagesTest.SignInTest" />
+      <class name="fridgefoodtask.PagesTest.LogInTest" />
     </classes>
   </test>
   <test name="Search and Recipe Pages Test">

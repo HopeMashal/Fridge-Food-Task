@@ -6,18 +6,18 @@ import org.openqa.selenium.WebElement;
 
 import fridgefoodtask.Components.Navbar;
 
-public class SignInPage extends Navbar {
+public class LogInPage extends Navbar {
   WebElement emailBox;
   WebElement passwordBox;
   WebElement loginBtn;
   WebElement registerBtn;
 
-  public SignInPage(WebDriver driver) {
+  public LogInPage(WebDriver driver) {
     super(driver);
     // TODO Auto-generated constructor stub
   }
 
-  public void signInMethod(String email, String password) {
+  public void LogInMethod(String email, String password) {
     emailBox = driver.findElement(By.id("txtEmail"));
     emailBox.sendKeys(email);
     passwordBox = driver.findElement(By.id("txtpassword"));

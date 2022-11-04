@@ -10,18 +10,18 @@ import org.testng.annotations.Test;
 import fridgefoodtask.Core.Constant;
 import fridgefoodtask.Core.PropertiesFile;
 import fridgefoodtask.Core.TaskBase;
-import fridgefoodtask.Pages.SignInPage;
+import fridgefoodtask.Pages.LogInPage;
 import io.qameta.allure.Allure;
 
-public class SignInTest extends TaskBase {
+public class LogInTest extends TaskBase {
   @Test
-  public void SignInTesting() throws IOException {
+  public void LogInTesting() throws IOException {
     Allure.step("Go to Login Page Using Navbar Method");
-    SignInPage signInPage = new SignInPage(driver);
-    signInPage.clickLoginBtn();
+    LogInPage logInPage = new LogInPage(driver);
+    logInPage.clickLoginBtn();
 
     Allure.step("Check URL & Title of Login Page");
-    String[] loginHref = signInPage.loginHref();
+    String[] loginHref = logInPage.loginHref();
     Assert.assertEquals(driver.getTitle(), loginHref[0], "Title of Login Page NOT MATCH");
     Assert.assertEquals(driver.getCurrentUrl(), loginHref[1], "URL of Login Page NOT MATCH");
 
@@ -34,21 +34,21 @@ public class SignInTest extends TaskBase {
     File propertiesFile = new File(propFilePath);
     allureAttached.addFile(propertiesFile, "txt");
 
-    Allure.step("Fill Data For Sign In Method");
-    signInPage.signInMethod(email, password);
+    Allure.step("Fill Data For Log In Method");
+    logInPage.LogInMethod(email, password);
 
     Allure.step("Scroll Down 350px to Show Login Page");
     JavaScript.executeScript("window.scrollTo(0,350)");
 
     Allure.step("After Fill Data in Log In Page - Take Screen Shot");
     File afterFillDataInLogInPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "SignInTest/AfterFillDataInLogInPage.jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "LogInTest/AfterFillDataInLogInPage.jpg");
     Allure.addAttachment(
         afterFillDataInLogInPage.getName(),
         FileUtils.openInputStream(afterFillDataInLogInPage));
 
     Allure.step("Click Submit Button in Log In Page");
-    signInPage.clickSubmitBtn();
+    logInPage.clickSubmitBtn();
 
     Allure.step("Accept Alert - Login Message");
     try {
@@ -58,12 +58,12 @@ public class SignInTest extends TaskBase {
       Assert.fail("Login Failed");
     }
 
-    Allure.step("After Sign In - Take Screen Shot");
-    File afterSignIn = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "SignInTest/AfterSignIn.jpg");
+    Allure.step("After Log In - Take Screen Shot");
+    File afterLogIn = takeScreenShot
+        .takeScreenShot(Constant.getScreenShotsPath() + "LogInTest/AfterLogIn.jpg");
     Allure.addAttachment(
-        afterSignIn.getName(),
-        FileUtils.openInputStream(afterSignIn));
+        afterLogIn.getName(),
+        FileUtils.openInputStream(afterLogIn));
   }
 
 }
