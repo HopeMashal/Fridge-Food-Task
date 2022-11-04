@@ -6,14 +6,14 @@
 
 - [X] No duplication is allowed, arrange code in packages will be great
 
-- [ ] Data Driven testing - must
+- [X] Data Driven testing - must
 
-- [ ] Read and write file – must
+- [X] Read and write file – must
 
-- [ ] Work with properties file – advantage
+- [X] Work with properties file – advantage
 
-- [ ] Create allure report – Must
+- [X] Create allure report – Must
 
-- [ ] Tests and Assertions – Must
+- [X] Tests and Assertions – Must
 
 - [X] Python or Java can be used, Appium or selenium can be used
