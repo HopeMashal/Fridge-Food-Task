@@ -25,10 +25,10 @@ public class Result extends Navbar {
     if (!firstPageResults.isEmpty()) {
       for (WebElement result : firstPageResults) {
         Card recipeCard = new Card(driver, result);
-        String resultLink = recipeCard.getRecipeCardLink();
-        String resultName = recipeCard.getRecipeCardName();
-        String resultCategory = recipeCard.getRecipeCardCategory();
-        String resultImgSrc = recipeCard.getRecipeCardImgSrc();
+        String resultLink = recipeCard.getCardLink();
+        String resultName = recipeCard.getCardName();
+        String resultCategory = recipeCard.getCardDetails();
+        String resultImgSrc = recipeCard.getCardImgSrc();
         String[] resultValues = new String[] { resultName, resultLink, resultCategory, resultImgSrc };
         results.add(resultValues);
       }

@@ -24,10 +24,10 @@ public class SearchPage extends Result {
     if (!firstPageResults.isEmpty()) {
       for (WebElement result : firstPageResults) {
         Card recipeCard = new Card(driver, result);
-        String resultLink = recipeCard.getRecipeCardLink();
-        String resultName = recipeCard.getRecipeCardName();
+        String resultLink = recipeCard.getCardLink();
+        String resultName = recipeCard.getCardName();
         String resultCookingTime = recipeCard.getRecipeCardCookingTime();
-        String resultImgSrc = recipeCard.getRecipeCardImgSrc();
+        String resultImgSrc = recipeCard.getCardImgSrc();
         String resultIngredients = recipeCard.getRecipeCardIngredients();
         String[] resultValues = new String[] { resultName, resultLink, resultCookingTime, resultImgSrc,
             resultIngredients };

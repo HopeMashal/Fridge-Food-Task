@@ -33,7 +33,7 @@ public class TaskBase {
 
     Allure.step("After Open MyFridgeFood.com - Take Screen Shot");
     File afterOpenMyFridgeFoodPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "TaskBase/afterOpenMyFridgeFoodPage.jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "TaskBase/AfterOpenMyFridgeFoodPage.jpg");
     allureAttached.addImage(afterOpenMyFridgeFoodPage);
   }
 

@@ -8,50 +8,50 @@ import org.openqa.selenium.WebElement;
 
 public class Card {
   WebDriver driver;
-  WebElement recipeElement;
+  WebElement cardElement;
 
-  public Card(WebDriver driver, WebElement recipe) {
+  public Card(WebDriver driver, WebElement card) {
     this.driver = driver;
-    recipeElement = recipe;
+    cardElement = card;
   }
 
-  public String getRecipeCardName() {
-    String recipeCardName = recipeElement.findElement(By.cssSelector("div[class='line-item-body']>a")).getText();
-    return recipeCardName;
+  public String getCardName() {
+    String cardName = cardElement.findElement(By.cssSelector("div[class='line-item-body']>a")).getText();
+    return cardName;
   }
 
-  public String getRecipeCardLink() {
-    String recipeCardLink = recipeElement.findElement(By.cssSelector("div[class='line-item-image-container']>a"))
+  public String getCardLink() {
+    String cardLink = cardElement.findElement(By.cssSelector("div[class='line-item-image-container']>a"))
         .getAttribute("href");
-    return recipeCardLink;
+    return cardLink;
   }
 
-  public String getRecipeCardCategory() {
-    String recipeCardCategory = recipeElement.findElement(By.cssSelector("div[class='line-item-details']>p")).getText()
+  public String getCardDetails() {
+    String cardDetails = cardElement.findElement(By.cssSelector("div[class='line-item-details']>p")).getText()
         .replaceFirst("Category: ", "");
-    return recipeCardCategory;
+    return cardDetails;
   }
 
-  public String getRecipeCardImgSrc() {
-    String recipeCardImgSrc = recipeElement.findElement(By.cssSelector("div[class='line-item-image-container']>a>img"))
+  public String getCardImgSrc() {
+    String cardImgSrc = cardElement.findElement(By.cssSelector("div[class='line-item-image-container']>a>img"))
         .getAttribute("src").replace(" ", "%20");
-    return recipeCardImgSrc;
+    return cardImgSrc;
   }
 
   public String getRecipeCardCookingTime() {
-    String recipeCardCookingTime = recipeElement.findElement(By.cssSelector("div[class='line-item-details']")).getText()
+    String recipeCardCookingTime = cardElement.findElement(By.cssSelector("div[class='line-item-details']")).getText()
         .replaceFirst("Cooking Time: ", "");
     return recipeCardCookingTime;
   }
 
   public String getRecipeCardIngredients() {
-    String recipeCardIngredients = recipeElement
+    String recipeCardIngredients = cardElement
         .findElement(By.cssSelector("div[class='missing-ingred-container']>span"))
         .getText();
     String recipeCardIngredientsValue = "None";
     if (recipeCardIngredients.equals("Missing Ingredients")) {
       recipeCardIngredientsValue = "";
-      List<WebElement> IngredientsList = recipeElement
+      List<WebElement> IngredientsList = cardElement
           .findElements(By.cssSelector("div[class='flex-row']>span[class='AddIngredientName']"));
       for (WebElement ingredient : IngredientsList) {
         recipeCardIngredientsValue += ingredient.getText() + ", ";
@@ -62,18 +62,18 @@ public class Card {
   }
 
   public String getDeciderCardName() {
-    String recipeCardName = recipeElement.findElement(By.cssSelector("div[class='line-item-body']>div>a")).getText();
+    String recipeCardName = cardElement.findElement(By.cssSelector("div[class='line-item-body']>div>a")).getText();
     return recipeCardName;
   }
 
   public String getDeciderCardDetails() {
-    String recipeCardCategory = recipeElement.findElement(By.cssSelector("div[class='line-item-details']>p")).getText()
+    String recipeCardCategory = cardElement.findElement(By.cssSelector("div[class='line-item-details']>p")).getText()
         .replace(": \n", ": ");
     return recipeCardCategory;
   }
 
   public void clickCardBookmarksBtn() {
-    WebElement bookmarksBtn = recipeElement
+    WebElement bookmarksBtn = cardElement
         .findElement(By.cssSelector("div[class='recipe-results-bookmark']>span"));
     bookmarksBtn.click();
   }

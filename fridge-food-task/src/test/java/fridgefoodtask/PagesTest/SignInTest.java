@@ -39,7 +39,7 @@ public class SignInTest extends TaskBase {
 
     Allure.step("After Fill Data in Log In Page - Take Screen Shot");
     File afterFillDataInLogInPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "SignInTest/afterFillDataInLogInPage.jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "SignInTest/AfterFillDataInLogInPage.jpg");
     Allure.addAttachment(
         afterFillDataInLogInPage.getName(),
         FileUtils.openInputStream(afterFillDataInLogInPage));
@@ -57,7 +57,7 @@ public class SignInTest extends TaskBase {
 
     Allure.step("After Sign In - Take Screen Shot");
     File afterSignIn = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "SignInTest/afterSignIn.jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "SignInTest/AfterSignIn.jpg");
     Allure.addAttachment(
         afterSignIn.getName(),
         FileUtils.openInputStream(afterSignIn));

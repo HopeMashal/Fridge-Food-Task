@@ -53,10 +53,10 @@ public class DeciderPage extends Result {
     if (!firstPageResults.isEmpty()) {
       for (WebElement result : firstPageResults) {
         Card deciderCard = new Card(driver, result);
-        String resultLink = deciderCard.getRecipeCardLink();
+        String resultLink = deciderCard.getCardLink();
         String resultName = deciderCard.getDeciderCardName();
         String resultDetails = deciderCard.getDeciderCardDetails();
-        String resultImgSrc = deciderCard.getRecipeCardImgSrc();
+        String resultImgSrc = deciderCard.getCardImgSrc();
         String[] resultValues = new String[] { resultName, resultLink, resultDetails, resultImgSrc };
         results.add(resultValues);
       }
