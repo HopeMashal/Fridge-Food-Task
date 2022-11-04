@@ -50,4 +50,9 @@ public class Result extends Navbar {
     Card recipeCard = new Card(driver, selectResult);
     recipeCard.clickCardBookmarksBtn();
   }
+
+  public JavascriptExecutor getJavaScript() {
+    return JavaScript;
+  }
+
 }

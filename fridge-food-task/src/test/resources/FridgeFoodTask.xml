@@ -20,4 +20,19 @@
       <class name="fridgefoodtask.PagesTest.ContestTest" />
     </classes>
   </test>
+  <test name="Tips and Tip Pages Test">
+    <classes>
+      <class name="fridgefoodtask.PagesTest.TipsTest" />
+    </classes>
+  </test>
+  <test name="Copyright Policy Page Test">
+    <classes>
+      <class name="fridgefoodtask.PagesTest.CopyrightPolicyTest" />
+    </classes>
+  </test>
+  <test name="Submit a Recipe Page Test">
+    <classes>
+      <class name="fridgefoodtask.PagesTest.SubmitRecipeTest" />
+    </classes>
+  </test>
 </suite>

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -15,7 +14,6 @@ public class DeciderPage extends Result {
   WebElement answerBtn;
   WebElement pickOneResultBtn;
   WebElement startOverBtn;
-  JavascriptExecutor JavaScript;
   List<WebElement> firstPageResults;
   WebElement selectResult;
 
@@ -44,7 +42,7 @@ public class DeciderPage extends Result {
     // TODO Auto-generated method stub
     selectResult = driver
         .findElements(By.cssSelector("div[class='line-item-body']>div>a")).get(index);
-    JavaScript.executeScript("arguments[0].click();", selectResult);
+    getJavaScript().executeScript("arguments[0].click();", selectResult);
   }
 
   @Override
