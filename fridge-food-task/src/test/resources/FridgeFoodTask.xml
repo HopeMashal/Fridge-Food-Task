@@ -10,9 +10,19 @@
       <class name="fridgefoodtask.PagesTest.SearchTest" />
     </classes>
   </test>
+  <test name="Home and Search and Decider and Recipe Pages Test">
+    <classes>
+      <class name="fridgefoodtask.PagesTest.HomeTest" />
+    </classes>
+  </test>
   <test name="Bookmarks Page Test">
     <classes>
       <class name="fridgefoodtask.PagesTest.BookmarksTest" />
+    </classes>
+  </test>
+  <test name="My Profile Page Test">
+    <classes>
+      <class name="fridgefoodtask.PagesTest.ProfileTest" />
     </classes>
   </test>
   <test name="Contests Page Test">
