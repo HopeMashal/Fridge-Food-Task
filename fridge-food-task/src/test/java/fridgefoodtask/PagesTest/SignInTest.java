@@ -37,6 +37,9 @@ public class SignInTest extends TaskBase {
     Allure.step("Fill Data For Sign In Method");
     signInPage.signInMethod(email, password);
 
+    Allure.step("Scroll Down 350px to Show Login Page");
+    JavaScript.executeScript("window.scrollTo(0,350)");
+
     Allure.step("After Fill Data in Log In Page - Take Screen Shot");
     File afterFillDataInLogInPage = takeScreenShot
         .takeScreenShot(Constant.getScreenShotsPath() + "SignInTest/AfterFillDataInLogInPage.jpg");

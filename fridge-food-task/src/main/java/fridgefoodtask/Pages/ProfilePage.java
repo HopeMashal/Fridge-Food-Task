@@ -20,30 +20,30 @@ public class ProfilePage extends Navbar {
 
   public String getFirstNameValue() {
     firstNameBox = driver.findElement(By.id("txtfname"));
-    return firstNameBox.getText();
+    return firstNameBox.getAttribute("value");
   }
 
   public String getLastNameValue() {
     lastNameBox = driver.findElement(By.id("txtlname"));
-    return lastNameBox.getText();
+    return lastNameBox.getAttribute("value");
   }
 
   public String getCountryValue() {
     countryBox = driver.findElement(By.id("ddcountry"));
-    return countryBox.getText();
+    return countryBox.getAttribute("value");
   }
 
   public String getStateValue() {
-    if (!driver.findElements(By.id("ddstate")).isEmpty()) {
+    if (driver.findElements(By.cssSelector("select[id='ddstate']>option")).size() > 2) {
       stateBox = driver.findElement(By.id("ddstate"));
     } else {
       stateBox = driver.findElement(By.id("txtstate"));
     }
-    return stateBox.getText();
+    return stateBox.getAttribute("value");
   }
 
   public String getCityValue() {
     cityBox = driver.findElement(By.id("txtCity"));
-    return cityBox.getText();
+    return cityBox.getAttribute("value");
   }
 }

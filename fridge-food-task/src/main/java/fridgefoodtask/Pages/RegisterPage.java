@@ -32,7 +32,7 @@ public class RegisterPage extends Navbar {
     countryBox = driver.findElement(By.id("ddcountry"));
     Select countries = new Select(countryBox);
     countries.selectByValue(country);
-    if (!driver.findElements(By.id("ddstate")).isEmpty()) {
+    if (driver.findElements(By.cssSelector("select[id='ddstate']>option")).size() > 2) {
       stateBox = driver.findElement(By.id("ddstate"));
       Select states = new Select(stateBox);
       states.selectByValue(state);
