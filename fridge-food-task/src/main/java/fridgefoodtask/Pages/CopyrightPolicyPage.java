@@ -27,7 +27,7 @@ public class CopyrightPolicyPage extends Navbar {
     ElementsList = driver.findElements(By.xpath("//*[@class='content-main']/div"));
     List<String> elementList = new ArrayList<String>();
     for (int i = 0; i < 11; i++) {
-      int index = 6 + (2 * i);
+      int index = 5 + (2 * i);
       elementList.add(ElementsList.get(index).getText());
     }
     return elementList;
@@ -46,7 +46,7 @@ public class CopyrightPolicyPage extends Navbar {
     ElementsList = driver.findElements(By.xpath("//*[@class='content-main']/div"));
     List<String> elementList = new ArrayList<String>();
     for (int i = 0; i < 2; i++) {
-      int index = 29 + (2 * i);
+      int index = 28 + (2 * i);
       elementList.add(ElementsList.get(index).getText());
     }
     return elementList;
