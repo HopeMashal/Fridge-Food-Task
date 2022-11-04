@@ -24,11 +24,19 @@ public class DeciderPage extends Result {
 
   public void clickAnswerBtn(String answer) {
     answerBtn = driver.findElement(By.linkText(answer));
-    answerBtn.click();
+    getJavaScript().executeScript("arguments[0].click();", answerBtn);
+  }
+
+  public void clickAllAnswersBtn(String[] answerList) throws InterruptedException {
+    for (int i = 0; i < answerList.length; i++) {
+      clickAnswerBtn(answerList[i]);
+      Thread.sleep(3000);
+    }
   }
 
   public void clickPickOneResultBtn() {
-    pickOneResultBtn = driver.findElement(By.linkText("Just Pick One I Can Make!"));
+    pickOneResultBtn = driver
+        .findElement(By.cssSelector("p[style='text-align:center;margin:30px 0;']>a:nth-of-type(1)"));
     pickOneResultBtn.click();
   }
 
@@ -61,7 +69,7 @@ public class DeciderPage extends Result {
         results.add(resultValues);
       }
     } else {
-      String[] resultValues = new String[] { "NO RESULT", "NO RESULT", "NO RESULT", "NO RESULT" };
+      String[] resultValues = new String[] { "", "", "", "" };
       results.add(resultValues);
     }
     return results;

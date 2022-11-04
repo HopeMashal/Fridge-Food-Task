@@ -34,7 +34,7 @@ public class SearchPage extends Result {
         results.add(resultValues);
       }
     } else {
-      String[] resultValues = new String[] { "NO RESULT", "NO RESULT", "NO RESULT", "NO RESULT", "NO RESULT" };
+      String[] resultValues = new String[] { "", "", "", "", "" };
       results.add(resultValues);
     }
     return results;

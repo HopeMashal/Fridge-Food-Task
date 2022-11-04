@@ -20,8 +20,11 @@ public class HomePage extends Navbar {
   }
 
   public void clickClearAllBtn() {
-    clearBtn = driver.findElement(By.cssSelector("div[class='Clear']>div[class='remove']"));
-    clearBtn.click();
+    if (!driver.findElements(By.cssSelector("div[class='Empty']+div[style='display: block;']>div[class='remove']"))
+        .isEmpty()) {
+      clearBtn = driver.findElement(By.cssSelector("div[class='Clear']>div[class='remove']"));
+      clearBtn.click();
+    }
   }
 
   public void clickFindRecipesBtn() {

@@ -48,7 +48,7 @@ public class Card {
     String recipeCardIngredients = cardElement
         .findElement(By.cssSelector("div[class='missing-ingred-container']>span"))
         .getText();
-    String recipeCardIngredientsValue = "None";
+    String recipeCardIngredientsValue = "";
     if (recipeCardIngredients.equals("Missing Ingredients")) {
       recipeCardIngredientsValue = "";
       List<WebElement> IngredientsList = cardElement

@@ -2,7 +2,6 @@ package fridgefoodtask.PagesTest;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -19,8 +18,6 @@ import fridgefoodtask.Pages.SearchPage;
 import io.qameta.allure.Allure;
 
 public class SearchTest extends TaskBase {
-
-  static List<String[]> OutputList = new ArrayList<String[]>();
 
   @DataProvider
   public static Object[][] getInputCSVData() throws Exception {
@@ -53,7 +50,7 @@ public class SearchTest extends TaskBase {
     Assert.assertEquals(driver.getTitle(), searchHref[0], "Title of Search Page (" + searchKeyWord + ") NOT MATCH");
     Assert.assertEquals(driver.getCurrentUrl(), searchHref[1], "URL of Search Page (" + searchKeyWord + ") NOT MATCH");
 
-    Allure.step("Scroll Down 350px to Show Recipe Results (" + searchKeyWord + ") ");
+    Allure.step("Scroll Down 350px to Show Search Results (" + searchKeyWord + ") ");
     JavaScript.executeScript("window.scrollTo(0,350)");
 
     Allure.step("Search Results Page (" + searchKeyWord + ") - Take Screen Shot");
