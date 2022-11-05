@@ -35,8 +35,6 @@ public class HomePage extends Navbar {
   public void clickSelectIngredientCheckBox(int index) {
     ingredientCheckBoxes = driver.findElements(By.cssSelector(
         "div[class='tile ingredient tiles-item']>span[class='check-box']>span[class='ingredient-checkbox']"));
-    // ingredientCheckBoxes=driver.findElements(By.cssSelector("div[class='tile
-    // ingredient tiles-item']>span[class='check-box']>input"));
     selectIngredientCheckBox = ingredientCheckBoxes.get(index);
     selectIngredientCheckBox.click();
   }

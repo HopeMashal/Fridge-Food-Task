@@ -194,12 +194,6 @@ public class HomeTest extends TaskBase {
             Constant.getScreenShotsPath() + "HomeTest/" + "ClickBookmarksFromRecipePage_" + index + ".jpg");
     allureAttached.addImage(clickBookmarksFromRecipePage);
 
-    // Allure.step("Go to Home Page Using Navbar Method");
-    // recipePage.clickHomeBtn();
-
-    // Allure.step("Click Clear All in Home Page");
-    // homePage.clickClearAllBtn();
-
     index++;
   }
 }
