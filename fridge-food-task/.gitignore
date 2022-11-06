@@ -4,4 +4,4 @@ Screenshots
 test-output
 Downloads
 *.docx
-*Output.csv
+output*.csv

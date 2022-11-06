@@ -16,7 +16,7 @@ import io.qameta.allure.Allure;
 public class ProfileTest extends TaskBase {
   @Test
   public void ProfileTesting() throws IOException, InterruptedException {
-    Allure.step("Go to Profile Page Using Navbar Method");
+    Allure.step("Go to Profile Page Using clickMyProfileBtn Method");
     ProfilePage profilePage = new ProfilePage(driver);
     profilePage.clickMyProfileBtn();
 
@@ -41,9 +41,9 @@ public class ProfileTest extends TaskBase {
     JavaScript.executeScript("window.scrollTo(0,350)");
     Thread.sleep(3000);
 
-    Allure.step("Profile Page - Take Screen Shot");
+    Allure.step("After Open Profile Page - Take Screen Shot");
     File myProfilePage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "ProfileTest/ProfilePage.jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "ProfileTest/afterOpenProfilePage.jpg");
     Allure.addAttachment(
         myProfilePage.getName(),
         FileUtils.openInputStream(myProfilePage));

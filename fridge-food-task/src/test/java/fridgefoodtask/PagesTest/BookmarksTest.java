@@ -16,7 +16,7 @@ public class BookmarksTest extends TaskBase {
 
   @Test
   public void BookmarksTesting() throws IOException, InterruptedException {
-    Allure.step("Go to Bookmarks Page Using Navbar Method");
+    Allure.step("Go to Bookmarks Page Using clickBookmarksBtn Method");
     BookmarksPage bookmarksPage = new BookmarksPage(driver);
     bookmarksPage.clickBookmarksBtn();
 
@@ -28,36 +28,36 @@ public class BookmarksTest extends TaskBase {
     Allure.step("Scroll Down 350px to Show Bookmarks Page");
     JavaScript.executeScript("window.scrollTo(0,350)");
 
-    Allure.step("Bookmarks Page - Take Screen Shot");
+    Allure.step("After Open Bookmarks Page - Take Screen Shot");
     File bookmarksResultPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "BookmarksTest/" + "BookmarksResultPage.jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "BookmarksTest/afterOpenBookmarksPage.jpg");
     allureAttached.addImage(bookmarksResultPage);
 
-    Allure.step("Write the Bookmarks Page Output File");
-    File bookmarksPageFile = new File(Constant.getCSVFilesPath() + "BookmarksPageOutput.csv");
+    Allure.step("Write Output File of the Bookmarks Page");
+    File bookmarksPageFile = new File(Constant.getCSVFilesPath() + "outputFileOfBookmarksPage.csv");
     CSVFile.writeDataLineByLine(bookmarksPageFile.getPath(),
         bookmarksPage.getFirstPageResults(),
         new String[] { "Recipe Name", "Recipe Link", "Recipe Category", "Recipe Image Source" });
 
-    Allure.step("Attach the Bookmarks Page Output File");
+    Allure.step("Attach Output File of the Bookmarks Page");
     allureAttached.addFile(bookmarksPageFile, "csv");
 
-    Allure.step("Click Delete Bookmarks Button For Third Element");
+    Allure.step("Delete the Third Item from Bookmarks");
     bookmarksPage.clickSelectBookmarksBtn(2);
     Thread.sleep(2000);
 
-    Allure.step("After Click Delete Bookmarks Button For Third Element - Take Screen Shot");
+    Allure.step("After Delete the Third Item from Bookmarks - Take Screen Shot");
     File bookmarksPageAfterDelete = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "BookmarksTest/" + "BookmarksPageAfterDelete.jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "BookmarksTest/afterDeleteThirdItemFromBookmarks.jpg");
     allureAttached.addImage(bookmarksPageAfterDelete);
 
-    Allure.step("Delete All Bookmarks");
+    Allure.step("Delete All Items from Bookmarks");
     bookmarksPage.deleteAllBookmarksResult();
     Thread.sleep(2000);
 
-    Allure.step("After Delete All Bookmarks - Take Screen Shot");
+    Allure.step("After Delete All Items from Bookmarks - Take Screen Shot");
     File bookmarksPageAfterDeleteAll = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "BookmarksTest/" + "BookmarksPageAfterDeleteAll.jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "BookmarksTest/afterDeleteAllItemsFromBookmarks.jpg");
     allureAttached.addImage(bookmarksPageAfterDeleteAll);
   }
 }

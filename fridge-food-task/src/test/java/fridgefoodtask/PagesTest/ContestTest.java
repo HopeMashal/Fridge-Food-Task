@@ -17,7 +17,7 @@ import io.qameta.allure.Allure;
 public class ContestTest extends TaskBase {
   @Test
   public void ContestTesting() throws IOException, InvalidFormatException {
-    Allure.step("Go to Contests Page Using Navbar Method");
+    Allure.step("Go to Contests Page Using clickContestsBtn Method");
     ContestPage contestsPage = new ContestPage(driver);
     contestsPage.clickContestsBtn();
 
@@ -29,13 +29,13 @@ public class ContestTest extends TaskBase {
     Allure.step("Scroll Down 350px to Show Contests Page");
     JavaScript.executeScript("window.scrollTo(0,350)");
 
-    Allure.step("Contests Page - Take Screen Shot");
+    Allure.step("After Open Contests Page - Take Screen Shot");
     File contestPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "ContestsTest/" + "ContestsPage.jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "ContestsTest/afterOpenContestsPage.jpg");
     allureAttached.addImage(contestPage);
 
-    Allure.step("Write Contests Page File");
-    String wordFilePath = Constant.getWordFilesPath() + "ContestsPage.docx";
+    Allure.step("Write the Contests Page File");
+    String wordFilePath = Constant.getWordFilesPath() + "ContestsPageFile.docx";
     WordFile wordFile = new WordFile(wordFilePath);
     wordFile.AddHeader(driver.getTitle());
     wordFile.AddFooter(driver.getCurrentUrl());
@@ -47,17 +47,17 @@ public class ContestTest extends TaskBase {
     wordFile.AddImage(contestsPage.getContestImgPath());
     wordFile.WriteWordFile();
 
-    Allure.step("Attach Contests Page File");
+    Allure.step("Attach the Contests Page File");
     File contestFile = new File(wordFilePath);
     allureAttached.addFile(contestFile, "doc");
 
-    Allure.step("Write the Contests Archived Output File");
-    File contestArchivedFile = new File(Constant.getCSVFilesPath() + "ContestsArchivedOutput.csv");
+    Allure.step("Write Output File of the Contests Archived");
+    File contestArchivedFile = new File(Constant.getCSVFilesPath() + "outputFileOfContestsArchived.csv");
     CSVFile.writeDataLineByLine(contestArchivedFile.getPath(),
         contestsPage.getArchivedContest(),
         new String[] { "Archived Title", "Archived Date", "Archived Link" });
 
-    Allure.step("Attach the Contests Archived Output File");
+    Allure.step("Attach Output File of the Contests Archived");
     allureAttached.addFile(contestArchivedFile, "csv");
   }
 }

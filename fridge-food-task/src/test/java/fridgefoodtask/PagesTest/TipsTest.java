@@ -18,7 +18,7 @@ import io.qameta.allure.Allure;
 public class TipsTest extends TaskBase {
   @Test
   public void TipsTesting() throws IOException, InvalidFormatException {
-    Allure.step("Go to Tips Page Using Navbar Method");
+    Allure.step("Go to Tips Page Using clickTipsBtn Method");
     TipsPage tipsPage = new TipsPage(driver);
     tipsPage.clickTipsBtn();
 
@@ -30,34 +30,34 @@ public class TipsTest extends TaskBase {
     Allure.step("Scroll Down 350px to Show Tips Page");
     JavaScript.executeScript("window.scrollTo(0,350)");
 
-    Allure.step("Tips Page - Take Screen Shot");
+    Allure.step("After Open Tips Page - Take Screen Shot");
     File tipsPageImage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "TipsTest/" + "TipsPage.jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "TipsTest/afterOpenTipsPage.jpg");
     allureAttached.addImage(tipsPageImage);
 
-    Allure.step("Write the Tips Page Output File");
-    File tipsFile = new File(Constant.getCSVFilesPath() + "TipsPageOutput.csv");
+    Allure.step("Write Output File of the Tips Page");
+    File tipsFile = new File(Constant.getCSVFilesPath() + "outputFileOfTipsPage.csv");
     CSVFile.writeDataLineByLine(tipsFile.getPath(),
         tipsPage.getFirstPageResults(),
         new String[] { "Tip Name", "Tip Link", "Tip Details", "Tip Image Source" });
 
-    Allure.step("Attach the Tips Page Output File");
+    Allure.step("Attach Output File of the Tips Page");
     allureAttached.addFile(tipsFile, "csv");
 
-    Allure.step("Click First Tip Result");
+    Allure.step("Click First Tip Result in Tips Page");
     tipsPage.clickSelectResult(0);
     TipPage tipPage = new TipPage(driver);
 
     Allure.step("Scroll Down 350px to Show Tip Page");
     JavaScript.executeScript("window.scrollTo(0,350)");
 
-    Allure.step("Tip Page - Take Screen Shot");
+    Allure.step("After Open Tip Page - Take Screen Shot");
     File firstResultPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "TipsTest/" + "TipPage.jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "TipsTest/afterOpenTipPage.jpg");
     allureAttached.addImage(firstResultPage);
 
     Allure.step("Write the Tip Page File");
-    String wordFilePath = Constant.getWordFilesPath() + "TipPage.docx";
+    String wordFilePath = Constant.getWordFilesPath() + "TipPageFile.docx";
     WordFile wordFile = new WordFile(wordFilePath);
     wordFile.AddHeader(driver.getTitle());
     wordFile.AddFooter(driver.getCurrentUrl());

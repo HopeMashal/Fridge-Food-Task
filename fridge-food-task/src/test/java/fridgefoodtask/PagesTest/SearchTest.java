@@ -41,56 +41,57 @@ public class SearchTest extends TaskBase {
     File searchInputFile = new File(Constant.getCSVFilesPath() + "searchInput.csv");
     allureAttached.addFile(searchInputFile, "csv");
 
-    Allure.step("Go to Search Page  (" + searchKeyWord + ")  Using Navbar Method");
+    Allure.step("Go to " + searchKeyWord + " Search Page Using searchMethod");
     SearchPage searchPage = new SearchPage(driver);
     searchPage.searchMethod(searchKeyWord);
 
-    Allure.step("Check URL & Title of Search Page (" + searchKeyWord + ") ");
+    Allure.step("Check URL & Title of " + searchKeyWord + " Search Page");
     String[] searchHref = searchPage.searchHref(searchKeyWord);
-    Assert.assertEquals(driver.getTitle(), searchHref[0], "Title of Search Page (" + searchKeyWord + ") NOT MATCH");
-    Assert.assertEquals(driver.getCurrentUrl(), searchHref[1], "URL of Search Page (" + searchKeyWord + ") NOT MATCH");
+    Assert.assertEquals(driver.getTitle(), searchHref[0], "Title of " + searchKeyWord + " Search Page NOT MATCH");
+    Assert.assertEquals(driver.getCurrentUrl(), searchHref[1], "URL of " + searchKeyWord + " Search Page NOT MATCH");
 
-    Allure.step("Scroll Down 350px to Show Search Results (" + searchKeyWord + ") ");
+    Allure.step("Scroll Down 350px to Show " + searchKeyWord + " Search Page");
     JavaScript.executeScript("window.scrollTo(0,350)");
 
-    Allure.step("Search Results Page (" + searchKeyWord + ") - Take Screen Shot");
+    Allure.step("After Open " + searchKeyWord + "Search Page - Take Screen Shot");
     File searchResultsPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "SearchTest/" + searchKeyWord + "SearchResultsPage.jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "SearchTest/afterOpen" + searchKeyWord + "SearchPage.jpg");
     allureAttached.addImage(searchResultsPage);
 
-    Allure.step("Write the " + searchKeyWord + " Search Page Output File");
-    File searchPageFile = new File(Constant.getCSVFilesPath() + searchKeyWord + "SearchPageOutput.csv");
+    Allure.step("Write Output File of the " + searchKeyWord + " Search Page");
+    File searchPageFile = new File(Constant.getCSVFilesPath() + "outputFileOf" + searchKeyWord + "SearchPage.csv");
     CSVFile.writeDataLineByLine(searchPageFile.getPath(),
         searchPage.getFirstPageResults(),
         new String[] { "Recipe Name", "Recipe Link", "Recipe Category", "Recipe Image Source" });
 
-    Allure.step("Attach the " + searchKeyWord + " Search Page Output File");
+    Allure.step("Attach Output File of the " + searchKeyWord + " Search Page");
     allureAttached.addFile(searchPageFile, "csv");
 
-    Allure.step("Click Bookmarks Button For Second Result (" + searchKeyWord + ") ");
+    Allure.step("Click Bookmarks Button For Second Result in " + searchKeyWord + " Results Page");
     searchPage.clickSelectBookmarksBtn(1);
 
     Allure.step(
-        "After Click Bookmarks Button For Second Result in Results Page (" + searchKeyWord + ") - Take Screen Shot");
+        "After Click Bookmarks Button For Second Result in " + searchKeyWord + " Results Page - Take Screen Shot");
     File clickBookmarksForSecondResult = takeScreenShot
         .takeScreenShot(
-            Constant.getScreenShotsPath() + "SearchTest/" + searchKeyWord + "ClickBookmarksForSecondResult.jpg");
+            Constant.getScreenShotsPath() + "SearchTest/afterClickBookmarksBtnForSecondResultIn" + searchKeyWord
+                + "ResultPage.jpg");
     allureAttached.addImage(clickBookmarksForSecondResult);
 
-    Allure.step("Click First Result (" + searchKeyWord + ") ");
+    Allure.step("Click First Result in " + searchKeyWord + " Results Page");
     searchPage.clickSelectResult(0);
     RecipePage recipePage = new RecipePage(driver);
 
-    Allure.step("Scroll Down 350px to Show Recipe Page (" + searchKeyWord + ") ");
+    Allure.step("Scroll Down 350px to Show " + searchKeyWord + " Recipe Page");
     JavaScript.executeScript("window.scrollTo(0,350)");
 
-    Allure.step("Recipe Page For " + searchKeyWord + " - Take Screen Shot");
+    Allure.step("After Open " + searchKeyWord + "Recipe Page - Take Screen Shot");
     File firstResultPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "SearchTest/" + searchKeyWord + "RecipePage.jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "SearchTest/afterOpen" + searchKeyWord + "RecipePage.jpg");
     allureAttached.addImage(firstResultPage);
 
     Allure.step("Write the " + searchKeyWord + " Recipe Page File");
-    String wordFilePath = Constant.getWordFilesPath() + searchKeyWord + "RecipePage.docx";
+    String wordFilePath = Constant.getWordFilesPath() + searchKeyWord + "RecipePageFile.docx";
     WordFile wordFile = new WordFile(wordFilePath);
     wordFile.AddHeader(driver.getTitle());
     wordFile.AddFooter(driver.getCurrentUrl());
@@ -107,17 +108,17 @@ public class SearchTest extends TaskBase {
     File recipeFile = new File(wordFilePath);
     allureAttached.addFile(recipeFile, "doc");
 
-    Allure.step("Scroll Down 700px to Show Bookmarks Button in Recipe Page (" + searchKeyWord + ") ");
+    Allure.step("Scroll Down 700px to Show Bookmarks Button in " + searchKeyWord + " Recipe Page");
     JavaScript.executeScript("window.scrollTo(0,700)");
 
-    Allure.step("Click Bookmarks Button From Recipe Page (" + searchKeyWord + ") ");
+    Allure.step("Click Bookmarks Button From " + searchKeyWord + " Recipe Page");
     recipePage.clickRecipeBookmarksBtn();
 
     Allure.step(
-        "After Click Bookmarks Button From Recipe Page (" + searchKeyWord + ") - Take Screen Shot");
+        "After Click Bookmarks Button From " + searchKeyWord + " Recipe Page - Take Screen Shot");
     File clickBookmarksFromRecipePage = takeScreenShot
         .takeScreenShot(
-            Constant.getScreenShotsPath() + "SearchTest/" + searchKeyWord + "ClickBookmarksFromRecipePage.jpg");
+            Constant.getScreenShotsPath() + "SearchTest/afterClickBookmarksBtnFrom" + searchKeyWord + "RecipePage.jpg");
     allureAttached.addImage(clickBookmarksFromRecipePage);
   }
 

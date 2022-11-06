@@ -24,7 +24,7 @@ public class DeciderPage extends Result {
 
   public void clickAnswerBtn(String answer) {
     answerBtn = driver.findElement(By.linkText(answer));
-    getJavaScript().executeScript("arguments[0].click();", answerBtn);
+    JavaScript.executeScript("arguments[0].click();", answerBtn);
   }
 
   public void clickAllAnswersBtn(String[] answerList) throws InterruptedException {
@@ -50,7 +50,7 @@ public class DeciderPage extends Result {
     // TODO Auto-generated method stub
     selectResult = driver
         .findElements(By.cssSelector("div[class='line-item-body']>div>a")).get(index);
-    getJavaScript().executeScript("arguments[0].click();", selectResult);
+    JavaScript.executeScript("arguments[0].click();", selectResult);
   }
 
   @Override

@@ -16,7 +16,7 @@ import io.qameta.allure.Allure;
 public class LogInTest extends TaskBase {
   @Test
   public void LogInTesting() throws IOException {
-    Allure.step("Go to Login Page Using Navbar Method");
+    Allure.step("Go to Login Page Using clickLoginBtn Method");
     LogInPage logInPage = new LogInPage(driver);
     logInPage.clickLoginBtn();
 
@@ -34,7 +34,7 @@ public class LogInTest extends TaskBase {
     File propertiesFile = new File(propFilePath);
     allureAttached.addFile(propertiesFile, "txt");
 
-    Allure.step("Fill Data For Log In Method");
+    Allure.step("Fill Data in LogInMethod");
     logInPage.LogInMethod(email, password);
 
     Allure.step("Scroll Down 350px to Show Login Page");
@@ -42,7 +42,7 @@ public class LogInTest extends TaskBase {
 
     Allure.step("After Fill Data in Log In Page - Take Screen Shot");
     File afterFillDataInLogInPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "LogInTest/AfterFillDataInLogInPage.jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "LogInTest/afterFillDataInLogInPage.jpg");
     Allure.addAttachment(
         afterFillDataInLogInPage.getName(),
         FileUtils.openInputStream(afterFillDataInLogInPage));
@@ -60,7 +60,7 @@ public class LogInTest extends TaskBase {
 
     Allure.step("After Log In - Take Screen Shot");
     File afterLogIn = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "LogInTest/AfterLogIn.jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "LogInTest/afterLogIn.jpg");
     Allure.addAttachment(
         afterLogIn.getName(),
         FileUtils.openInputStream(afterLogIn));

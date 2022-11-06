@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Result extends Navbar {
-  JavascriptExecutor JavaScript;
+  public JavascriptExecutor JavaScript;
   List<WebElement> firstPageResults;
   WebElement selectResult;
 
@@ -49,10 +49,6 @@ public class Result extends Navbar {
     selectResult = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']")).get(index);
     Card recipeCard = new Card(driver, selectResult);
     recipeCard.clickCardBookmarksBtn();
-  }
-
-  public JavascriptExecutor getJavaScript() {
-    return JavaScript;
   }
 
 }

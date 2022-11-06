@@ -57,7 +57,7 @@ public class HomeTest extends TaskBase {
     File deciderInputFile = new File(Constant.getCSVFilesPath() + "deciderInput.csv");
     allureAttached.addFile(deciderInputFile, "csv");
 
-    Allure.step("Go to Home Page Using Navbar Method");
+    Allure.step("Go to Home Page Using clickHomeBtn Method");
     HomePage homePage = new HomePage(driver);
     homePage.clickHomeBtn();
 
@@ -69,52 +69,55 @@ public class HomeTest extends TaskBase {
     Allure.step("Scroll Down 550px to Show Home Page");
     JavaScript.executeScript("window.scrollTo(0,550)");
 
-    Allure.step("Click Clear All in Home Page");
+    Allure.step("Click Clear All Button in Home Page");
     homePage.clickClearAllBtn();
 
-    Allure.step("Click Ingredients CheckBox");
+    Allure.step("Click Ingredients CheckBox in Home Page");
     homePage.clickSelectIngredientCheckBox(Integer.parseInt(Int_1));
     homePage.clickSelectIngredientCheckBox(Integer.parseInt(Int_2));
     homePage.clickSelectIngredientCheckBox(Integer.parseInt(Int_3));
     homePage.clickSelectIngredientCheckBox(Integer.parseInt(Int_4));
 
-    Allure.step("After Click Ingredients CheckBox - Take Screen Shot");
+    Allure.step("After Click Ingredients CheckBox in Home Page - Take Screen Shot");
     File homePageImage = takeScreenShot
         .takeScreenShot(
-            Constant.getScreenShotsPath() + "HomeTest/" + "HomePageAfterClickIngredientsCheckbox_" + index + ".jpg");
+            Constant.getScreenShotsPath() + "HomeTest/afterClickIngredientsCheckboxForDataNo_" + index + ".jpg");
     allureAttached.addImage(homePageImage);
 
-    Allure.step("Click Find Recipes Button - Go To Search Page Using Ingredients CheckBox");
+    Allure.step(
+        "Click Find Recipes Button in Home Page, then the Search Page Will Open Using the Selection of Ingredients");
     homePage.clickFindRecipesBtn();
     SearchPage searchPage = new SearchPage(driver);
     Thread.sleep(3000);
 
-    Allure.step("Check URL & Title of Search Page Using Ingredients CheckBox");
+    Allure.step("Check URL & Title of Search Page Using the Selection of Ingredients");
     String[] searchHref = searchPage.searchIngredientsHref();
-    Assert.assertEquals(driver.getTitle(), searchHref[0], "Title of Search Page Using Ingredients CheckBox NOT MATCH");
+    Assert.assertEquals(driver.getTitle(), searchHref[0],
+        "Title of Search Page Using the Selection of Ingredients NOT MATCH");
     Assert.assertEquals(driver.getCurrentUrl(), searchHref[1],
-        "URL of Search Page Using Ingredients CheckBox NOT MATCH");
+        "URL of Search Page Using the Selection of Ingredients NOT MATCH");
 
-    Allure.step("Scroll Down 350px to Show Search Results Using Ingredients");
+    Allure.step("Scroll Down 350px to Show Search Page Using the Selection of Ingredients");
     JavaScript.executeScript("window.scrollTo(0,350)");
 
-    Allure.step("Search Results Page Using Ingredients - Take Screen Shot");
+    Allure.step("After Open Search Page Using the Selection of Ingredients - Take Screen Shot");
     File searchResultsPage = takeScreenShot
         .takeScreenShot(
-            Constant.getScreenShotsPath() + "HomeTest/" + "SearchResultsPageUsingIngredients_" + index + ".jpg");
+            Constant.getScreenShotsPath() + "HomeTest/afterOpenSearchPageUsingIngredientsForDataNo_" + index + ".jpg");
     allureAttached.addImage(searchResultsPage);
 
-    Allure.step("Write the Search Page Using Ingredients Output File");
-    File searchPageFile = new File(Constant.getCSVFilesPath() + "SearchPageUsingIngredients_" + index + "_Output.csv");
+    Allure.step("Write Output File of the Search Page Using Selection of Ingredients");
+    File searchPageFile = new File(
+        Constant.getCSVFilesPath() + "outputFileOfSearchPageUsingIngredientsForDataNo_" + index + "_Output.csv");
     CSVFile.writeDataLineByLine(searchPageFile.getPath(),
         searchPage.getHomeSearchFirstPageResults(),
         new String[] { "Recipe Name", "Recipe Link", "Recipe Cooking Time", "Recipe Image Source",
             "Missing Ingredients in the Recipe" });
 
-    Allure.step("Attach the Search Page Using Ingredients Output File");
+    Allure.step("Attach Output File of the Search Page Using Selection of Ingredients");
     allureAttached.addFile(searchPageFile, "csv");
 
-    Allure.step("Go to Decider Page Using Navbar Method");
+    Allure.step("Go to Decider Page Using clickDeciderBtn Method");
     DeciderPage deciderPage = new DeciderPage(driver);
     deciderPage.clickDeciderBtn();
 
@@ -126,29 +129,31 @@ public class HomeTest extends TaskBase {
     Allure.step("Scroll Down 350px to Show Decider Page");
     JavaScript.executeScript("window.scrollTo(0,350)");
 
-    Allure.step("Decider Page - Take Screen Shot");
+    Allure.step("After Open Decider Page - Take Screen Shot");
     File deciderPageImage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "HomeTest/" + "DeciderPage_" + index + ".jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "HomeTest/afterOpenDeciderPageForDataNo_" + index + ".jpg");
     allureAttached.addImage(deciderPageImage);
 
-    Allure.step("Select Answer in Decider Page");
+    Allure.step("Answer the Questions on the Decider Page");
     deciderPage.clickAllAnswersBtn(new String[] { A_1, A_2, A_3, A_4 });
 
     Allure.step("Scroll Down 350px to Show Decider Results Page");
     JavaScript.executeScript("window.scrollTo(0,350)");
 
-    Allure.step("Decider Results Page - Take Screen Shot");
+    Allure.step("After Open Decider Results Page - Take Screen Shot");
     File deciderResultsPageImage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "HomeTest/" + "DeciderResultsPage_" + index + ".jpg");
+        .takeScreenShot(
+            Constant.getScreenShotsPath() + "HomeTest/afterOpenDeciderResultsPageForDataNo_" + index + ".jpg");
     allureAttached.addImage(deciderResultsPageImage);
 
-    Allure.step("Write the Decider Results Page Output File");
-    File deciderResultPageFile = new File(Constant.getCSVFilesPath() + "DeciderResultsPage_" + index + "_Output.csv");
+    Allure.step("Write Output File Of the Decider Results Page");
+    File deciderResultPageFile = new File(
+        Constant.getCSVFilesPath() + "outputFileOFDeciderResultsPageForDataNo_" + index + ".csv");
     CSVFile.writeDataLineByLine(deciderResultPageFile.getPath(),
         deciderPage.getFirstPageResults(),
         new String[] { "Recipe Name", "Recipe Link", "Recipe Details", "Recipe Image Source" });
 
-    Allure.step("Attach the Decider Results Page Output File");
+    Allure.step("Attach Output File Of the Decider Results Page");
     allureAttached.addFile(deciderResultPageFile, "csv");
 
     Allure.step("Click (Just pick one I can make!) Button");
@@ -158,13 +163,13 @@ public class HomeTest extends TaskBase {
     Allure.step("Scroll Down 350px to Show Recipe Page");
     JavaScript.executeScript("window.scrollTo(0,350)");
 
-    Allure.step("Recipe Page - Take Screen Shot");
+    Allure.step("After Open Recipe Page - Take Screen Shot");
     File recipeResultPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "HomeTest/" + "RecipePage_" + index + ".jpg");
+        .takeScreenShot(Constant.getScreenShotsPath() + "HomeTest/afterOpenRecipePage_" + index + ".jpg");
     allureAttached.addImage(recipeResultPage);
 
     Allure.step("Write the Recipe Page File");
-    String wordFilePath = Constant.getWordFilesPath() + "RecipePage_" + index + ".docx";
+    String wordFilePath = Constant.getWordFilesPath() + "RecipePageFileForDataNo_" + index + ".docx";
     WordFile wordFile = new WordFile(wordFilePath);
     wordFile.AddHeader(driver.getTitle());
     wordFile.AddFooter(driver.getCurrentUrl());
@@ -180,19 +185,6 @@ public class HomeTest extends TaskBase {
     Allure.step("Attach the Recipe Page File");
     File recipeFile = new File(wordFilePath);
     allureAttached.addFile(recipeFile, "doc");
-
-    Allure.step("Scroll Down 700px to Show Bookmarks Button in Recipe Page");
-    JavaScript.executeScript("window.scrollTo(0,700)");
-
-    Allure.step("Click Bookmarks Button From Recipe Page");
-    recipePage.clickRecipeBookmarksBtn();
-
-    Allure.step(
-        "After Click Bookmarks Button From Recipe Page - Take Screen Shot");
-    File clickBookmarksFromRecipePage = takeScreenShot
-        .takeScreenShot(
-            Constant.getScreenShotsPath() + "HomeTest/" + "ClickBookmarksFromRecipePage_" + index + ".jpg");
-    allureAttached.addImage(clickBookmarksFromRecipePage);
 
     index++;
   }
