@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import fridgefoodtask.Components.Navbar;
-import fridgefoodtask.Core.Constant;
+import fridgefoodtask.Core.Constants;
 import fridgefoodtask.Core.DownloadFile;
 
 public class TipPage extends Navbar {
@@ -24,26 +24,26 @@ public class TipPage extends Navbar {
   }
 
   public String getTipName() {
-    tipName = driver.findElement(By.cssSelector("div[class='page-block']>h1"));
+    tipName = driver.findElement(By.cssSelector(Constants.ContestTipTitleCssSelector));
     return tipName.getText();
   }
 
   public String getTipImgPath() throws MalformedURLException, IOException {
-    tipImg = driver.findElement(By.className("recipe-img"));
+    tipImg = driver.findElement(By.className(Constants.TipImgClassName));
     String ImgUrl = tipImg.getAttribute("src").replace(" ", "%20");
     DownloadFile downloadFile = new DownloadFile();
     File image = downloadFile.DownloadFileMethod(ImgUrl,
-        Constant.getDownloadsPath() + getTipName().replace(" ", "") + ".jpg");
+        Constants.DownloadsPath + getTipName().replace(" ", "") + ".jpg");
     return image.getPath();
   }
 
   public String getTipDescription() {
-    tipDescription = driver.findElement(By.cssSelector("div[class='page-block']>p"));
+    tipDescription = driver.findElement(By.cssSelector(Constants.ContestPTipDescCssSelector));
     return tipDescription.getText();
   }
 
   public String getTipParagraph() {
-    tipParagraph = driver.findElement(By.cssSelector("div[class='page-block']>div>p"));
+    tipParagraph = driver.findElement(By.cssSelector(Constants.TipParagraphCssSelector));
     return tipParagraph.getText();
   }
 }

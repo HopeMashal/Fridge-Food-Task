@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import fridgefoodtask.Components.Result;
+import fridgefoodtask.Core.Constants;
 
 public class BookmarksPage extends Result {
 
@@ -13,7 +14,7 @@ public class BookmarksPage extends Result {
   }
 
   public int getBookmarksNumbers() {
-    int bookmarksNumbers = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']")).size();
+    int bookmarksNumbers = driver.findElements(By.cssSelector(Constants.FirstPageResultsCssSelector)).size();
     return bookmarksNumbers;
   }
 

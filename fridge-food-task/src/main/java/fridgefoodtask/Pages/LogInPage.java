@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import fridgefoodtask.Components.Navbar;
+import fridgefoodtask.Core.Constants;
 
 public class LogInPage extends Navbar {
   WebElement emailBox;
@@ -18,19 +19,19 @@ public class LogInPage extends Navbar {
   }
 
   public void LogInMethod(String email, String password) {
-    emailBox = driver.findElement(By.id("txtEmail"));
+    emailBox = driver.findElement(By.id(Constants.EmailBoxID));
     emailBox.sendKeys(email);
-    passwordBox = driver.findElement(By.id("txtpassword"));
+    passwordBox = driver.findElement(By.id(Constants.PasswordBoxID));
     passwordBox.sendKeys(password);
   }
 
   public void clickSubmitBtn() {
-    loginBtn = driver.findElement(By.id("getbutton"));
+    loginBtn = driver.findElement(By.id(Constants.SubmitBtnID));
     loginBtn.click();
   }
 
   public void clickRegisterBtn() {
-    registerBtn = driver.findElement(By.id("registration"));
+    registerBtn = driver.findElement(By.id(Constants.RegistrationBtnID));
     registerBtn.click();
   }
 }

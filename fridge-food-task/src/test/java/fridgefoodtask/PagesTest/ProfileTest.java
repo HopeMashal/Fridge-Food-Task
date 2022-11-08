@@ -7,7 +7,7 @@ import org.apache.commons.io.FileUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import fridgefoodtask.Core.Constant;
+import fridgefoodtask.Core.Constants;
 import fridgefoodtask.Core.PropertiesFile;
 import fridgefoodtask.Core.TaskBase;
 import fridgefoodtask.Pages.ProfilePage;
@@ -26,7 +26,7 @@ public class ProfileTest extends TaskBase {
     Assert.assertEquals(driver.getCurrentUrl(), profileHref[1], "URL of Profile Page NOT MATCH");
 
     Allure.step("Get Data From props.properties File");
-    String propFilePath = Constant.getPropertiesFilesPath() + "props.properties";
+    String propFilePath = Constants.PropertiesFilesPath + "props.properties";
     String firstName = PropertiesFile.getProperty(propFilePath, "firstName");
     String lastName = PropertiesFile.getProperty(propFilePath, "lastName");
     String country = PropertiesFile.getProperty(propFilePath, "country");
@@ -43,7 +43,7 @@ public class ProfileTest extends TaskBase {
 
     Allure.step("After Open Profile Page - Take Screen Shot");
     File myProfilePage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "ProfileTest/afterOpenProfilePage.jpg");
+        .takeScreenShot(Constants.ScreenShotsPath + "ProfileTest/afterOpenProfilePage.jpg");
     Allure.addAttachment(
         myProfilePage.getName(),
         FileUtils.openInputStream(myProfilePage));

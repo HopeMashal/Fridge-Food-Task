@@ -29,11 +29,11 @@ public class TaskBase {
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(100));
 
     Allure.step("Open MyFridgeFood.com");
-    driver.get(Constant.getURL());
+    driver.get(Constants.URL);
 
     Allure.step("After Open MyFridgeFood.com - Take Screen Shot");
     File afterOpenMyFridgeFoodPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "TaskBase/afterOpenMyFridgeFoodWebsite.jpg");
+        .takeScreenShot(Constants.ScreenShotsPath + "TaskBase/afterOpenMyFridgeFoodWebsite.jpg");
     allureAttached.addImage(afterOpenMyFridgeFoodPage);
   }
 

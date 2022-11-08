@@ -8,6 +8,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import fridgefoodtask.Core.Constants;
+
 public class Result extends Navbar {
   public JavascriptExecutor JavaScript;
   List<WebElement> firstPageResults;
@@ -21,7 +23,7 @@ public class Result extends Navbar {
 
   public List<String[]> getFirstPageResults() {
     List<String[]> results = new ArrayList<String[]>();
-    firstPageResults = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']"));
+    firstPageResults = driver.findElements(By.cssSelector(Constants.FirstPageResultsCssSelector));
     if (!firstPageResults.isEmpty()) {
       for (WebElement result : firstPageResults) {
         Card recipeCard = new Card(driver, result);
@@ -41,12 +43,12 @@ public class Result extends Navbar {
 
   public void clickSelectResult(int index) {
     selectResult = driver
-        .findElements(By.cssSelector("div[class='line-item-body']>a")).get(index);
+        .findElements(By.cssSelector(Constants.CardNameCssSelector)).get(index);
     JavaScript.executeScript("arguments[0].click();", selectResult);
   }
 
   public void clickSelectBookmarksBtn(int index) {
-    selectResult = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']")).get(index);
+    selectResult = driver.findElements(By.cssSelector(Constants.FirstPageResultsCssSelector)).get(index);
     Card recipeCard = new Card(driver, selectResult);
     recipeCard.clickCardBookmarksBtn();
   }

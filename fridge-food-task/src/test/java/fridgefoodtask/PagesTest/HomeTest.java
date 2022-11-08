@@ -10,7 +10,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import fridgefoodtask.Core.CSVFile;
-import fridgefoodtask.Core.Constant;
+import fridgefoodtask.Core.Constants;
 import fridgefoodtask.Core.TaskBase;
 import fridgefoodtask.Core.WordFile;
 import fridgefoodtask.Pages.DeciderPage;
@@ -24,8 +24,8 @@ public class HomeTest extends TaskBase {
 
   @DataProvider
   public static Object[][] getInputCSVData() throws Exception {
-    String homeInputFile = Constant.getCSVFilesPath() + "homeInput.csv";
-    String deciderInputFile = Constant.getCSVFilesPath() + "deciderInput.csv";
+    String homeInputFile = Constants.CSVFilesPath + "homeInput.csv";
+    String deciderInputFile = Constants.CSVFilesPath + "deciderInput.csv";
     List<String[]> homeLines = CSVFile.readAllLines(homeInputFile);
     homeLines.remove(0);
     List<String[]> deciderLines = CSVFile.readAllLines(deciderInputFile);
@@ -50,11 +50,11 @@ public class HomeTest extends TaskBase {
     Allure.step("Get Data From homeInput.csv & deciderInput.csv Files Using Data Provider");
 
     Allure.step("Attach homeInput.csv File");
-    File homeInputFile = new File(Constant.getCSVFilesPath() + "homeInput.csv");
+    File homeInputFile = new File(Constants.CSVFilesPath + "homeInput.csv");
     allureAttached.addFile(homeInputFile, "csv");
 
     Allure.step("Attach deciderInput.csv File");
-    File deciderInputFile = new File(Constant.getCSVFilesPath() + "deciderInput.csv");
+    File deciderInputFile = new File(Constants.CSVFilesPath + "deciderInput.csv");
     allureAttached.addFile(deciderInputFile, "csv");
 
     Allure.step("Go to Home Page Using clickHomeBtn Method");
@@ -81,7 +81,7 @@ public class HomeTest extends TaskBase {
     Allure.step("After Click Ingredients CheckBox in Home Page - Take Screen Shot");
     File homePageImage = takeScreenShot
         .takeScreenShot(
-            Constant.getScreenShotsPath() + "HomeTest/afterClickIngredientsCheckboxForDataNo_" + index + ".jpg");
+            Constants.ScreenShotsPath + "HomeTest/afterClickIngredientsCheckboxForDataNo_" + index + ".jpg");
     allureAttached.addImage(homePageImage);
 
     Allure.step(
@@ -103,12 +103,12 @@ public class HomeTest extends TaskBase {
     Allure.step("After Open Search Page Using the Selection of Ingredients - Take Screen Shot");
     File searchResultsPage = takeScreenShot
         .takeScreenShot(
-            Constant.getScreenShotsPath() + "HomeTest/afterOpenSearchPageUsingIngredientsForDataNo_" + index + ".jpg");
+            Constants.ScreenShotsPath + "HomeTest/afterOpenSearchPageUsingIngredientsForDataNo_" + index + ".jpg");
     allureAttached.addImage(searchResultsPage);
 
     Allure.step("Write Output File of the Search Page Using Selection of Ingredients");
     File searchPageFile = new File(
-        Constant.getCSVFilesPath() + "outputFileOfSearchPageUsingIngredientsForDataNo_" + index + "_Output.csv");
+        Constants.CSVFilesPath + "outputFileOfSearchPageUsingIngredientsForDataNo_" + index + ".csv");
     CSVFile.writeDataLineByLine(searchPageFile.getPath(),
         searchPage.getHomeSearchFirstPageResults(),
         new String[] { "Recipe Name", "Recipe Link", "Recipe Cooking Time", "Recipe Image Source",
@@ -131,7 +131,7 @@ public class HomeTest extends TaskBase {
 
     Allure.step("After Open Decider Page - Take Screen Shot");
     File deciderPageImage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "HomeTest/afterOpenDeciderPageForDataNo_" + index + ".jpg");
+        .takeScreenShot(Constants.ScreenShotsPath + "HomeTest/afterOpenDeciderPageForDataNo_" + index + ".jpg");
     allureAttached.addImage(deciderPageImage);
 
     Allure.step("Answer the Questions on the Decider Page");
@@ -143,12 +143,12 @@ public class HomeTest extends TaskBase {
     Allure.step("After Open Decider Results Page - Take Screen Shot");
     File deciderResultsPageImage = takeScreenShot
         .takeScreenShot(
-            Constant.getScreenShotsPath() + "HomeTest/afterOpenDeciderResultsPageForDataNo_" + index + ".jpg");
+            Constants.ScreenShotsPath + "HomeTest/afterOpenDeciderResultsPageForDataNo_" + index + ".jpg");
     allureAttached.addImage(deciderResultsPageImage);
 
     Allure.step("Write Output File Of the Decider Results Page");
     File deciderResultPageFile = new File(
-        Constant.getCSVFilesPath() + "outputFileOFDeciderResultsPageForDataNo_" + index + ".csv");
+        Constants.CSVFilesPath + "outputFileOFDeciderResultsPageForDataNo_" + index + ".csv");
     CSVFile.writeDataLineByLine(deciderResultPageFile.getPath(),
         deciderPage.getFirstPageResults(),
         new String[] { "Recipe Name", "Recipe Link", "Recipe Details", "Recipe Image Source" });
@@ -165,11 +165,11 @@ public class HomeTest extends TaskBase {
 
     Allure.step("After Open Recipe Page - Take Screen Shot");
     File recipeResultPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "HomeTest/afterOpenRecipePage_" + index + ".jpg");
+        .takeScreenShot(Constants.ScreenShotsPath + "HomeTest/afterOpenRecipePageForDataNo_" + index + ".jpg");
     allureAttached.addImage(recipeResultPage);
 
     Allure.step("Write the Recipe Page File");
-    String wordFilePath = Constant.getWordFilesPath() + "RecipePageFileForDataNo_" + index + ".docx";
+    String wordFilePath = Constants.WordFilesPath + "RecipePageFileForDataNo_" + index + ".docx";
     WordFile wordFile = new WordFile(wordFilePath);
     wordFile.AddHeader(driver.getTitle());
     wordFile.AddFooter(driver.getCurrentUrl());

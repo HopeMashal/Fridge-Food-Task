@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 
 import fridgefoodtask.Components.Card;
 import fridgefoodtask.Components.Result;
+import fridgefoodtask.Core.Constants;
 
 public class DeciderPage extends Result {
   WebElement answerBtn;
@@ -36,12 +37,12 @@ public class DeciderPage extends Result {
 
   public void clickPickOneResultBtn() {
     pickOneResultBtn = driver
-        .findElement(By.cssSelector("p[style='text-align:center;margin:30px 0;']>a:nth-of-type(1)"));
+        .findElement(By.cssSelector(Constants.PickOneResultBtnCssSelector));
     pickOneResultBtn.click();
   }
 
   public void clickStartOverBtn() {
-    startOverBtn = driver.findElement(By.linkText("Start Over"));
+    startOverBtn = driver.findElement(By.linkText(Constants.StartOverBtnLinkText));
     startOverBtn.click();
   }
 
@@ -49,7 +50,7 @@ public class DeciderPage extends Result {
   public void clickSelectResult(int index) {
     // TODO Auto-generated method stub
     selectResult = driver
-        .findElements(By.cssSelector("div[class='line-item-body']>div>a")).get(index);
+        .findElements(By.cssSelector(Constants.DeciderCardNameCssSelector)).get(index);
     JavaScript.executeScript("arguments[0].click();", selectResult);
   }
 
@@ -57,7 +58,7 @@ public class DeciderPage extends Result {
   public List<String[]> getFirstPageResults() {
     // TODO Auto-generated method stub
     List<String[]> results = new ArrayList<String[]>();
-    firstPageResults = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']"));
+    firstPageResults = driver.findElements(By.cssSelector(Constants.FirstPageResultsCssSelector));
     if (!firstPageResults.isEmpty()) {
       for (WebElement result : firstPageResults) {
         Card deciderCard = new Card(driver, result);

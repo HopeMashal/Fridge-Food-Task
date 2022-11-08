@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import fridgefoodtask.Components.Navbar;
-import fridgefoodtask.Core.Constant;
+import fridgefoodtask.Core.Constants;
 import fridgefoodtask.Core.DownloadFile;
 
 public class ContestPage extends Navbar {
@@ -27,12 +27,12 @@ public class ContestPage extends Navbar {
   }
 
   public String getContestTitle() {
-    contestTitle = driver.findElement(By.cssSelector("div[class='page-block']>h1"));
+    contestTitle = driver.findElement(By.cssSelector(Constants.ContestTipTitleCssSelector));
     return contestTitle.getText();
   }
 
   public List<String> getContestParagraphs() {
-    contestParagraphs = driver.findElements(By.cssSelector("div[class='page-block']>p"));
+    contestParagraphs = driver.findElements(By.cssSelector(Constants.ContestPTipDescCssSelector));
     List<String> paragraphsList = new ArrayList<String>();
     for (WebElement paragraph : contestParagraphs) {
       if (!paragraph.getText().isEmpty())
@@ -42,7 +42,7 @@ public class ContestPage extends Navbar {
   }
 
   public List<String> getContestList() {
-    contestList = driver.findElements(By.cssSelector("div[class='page-block']>ul>li"));
+    contestList = driver.findElements(By.cssSelector(Constants.ContestListCssSelector));
     List<String> contestsList = new ArrayList<String>();
     for (WebElement element : contestList) {
       contestsList.add(element.getText());
@@ -51,16 +51,16 @@ public class ContestPage extends Navbar {
   }
 
   public String getContestImgPath() throws MalformedURLException, IOException {
-    contestImg = driver.findElement(By.cssSelector("div[class='page-block']>p>img"));
+    contestImg = driver.findElement(By.cssSelector(Constants.ContestImgCssSelector));
     String ImgUrl = contestImg.getAttribute("src").replace(" ", "%20");
     DownloadFile downloadFile = new DownloadFile();
     File image = downloadFile.DownloadFileMethod(ImgUrl,
-        Constant.getDownloadsPath() + getContestTitle().replace(" ", "") + ".jpg");
+        Constants.DownloadsPath + getContestTitle().replace(" ", "") + ".jpg");
     return image.getPath();
   }
 
   public List<String[]> getArchivedContest() {
-    archivedContest = driver.findElements(By.cssSelector("div[class='archived-contests']>ul>li"));
+    archivedContest = driver.findElements(By.cssSelector(Constants.ContestArchivedListCssSelector));
     List<String[]> archivedContestsList = new ArrayList<String[]>();
     for (WebElement element : archivedContest) {
       String archivedTitle = element.findElement(By.tagName("a")).getText();

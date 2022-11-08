@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import fridgefoodtask.Components.Navbar;
+import fridgefoodtask.Core.Constants;
 
 public class HomePage extends Navbar {
   WebElement clearBtn;
@@ -20,21 +21,21 @@ public class HomePage extends Navbar {
   }
 
   public void clickClearAllBtn() {
-    if (!driver.findElements(By.cssSelector("div[class='Empty']+div[style='display: block;']>div[class='remove']"))
+    if (!driver.findElements(By.cssSelector(Constants.CheckClearBtnCssSelector))
         .isEmpty()) {
-      clearBtn = driver.findElement(By.cssSelector("div[class='Clear']>div[class='remove']"));
+      clearBtn = driver.findElement(By.cssSelector(Constants.ClearBtnCssSelector));
       clearBtn.click();
     }
   }
 
   public void clickFindRecipesBtn() {
-    findRecipesBtn = driver.findElement(By.cssSelector("div[class='button submit']"));
+    findRecipesBtn = driver.findElement(By.cssSelector(Constants.FindRecipesBtnCssSelector));
     findRecipesBtn.click();
   }
 
   public void clickSelectIngredientCheckBox(int index) {
     ingredientCheckBoxes = driver.findElements(By.cssSelector(
-        "div[class='tile ingredient tiles-item']>span[class='check-box']>span[class='ingredient-checkbox']"));
+        Constants.IngredientCheckBoxCssSelector));
     selectIngredientCheckBox = ingredientCheckBoxes.get(index);
     selectIngredientCheckBox.click();
   }

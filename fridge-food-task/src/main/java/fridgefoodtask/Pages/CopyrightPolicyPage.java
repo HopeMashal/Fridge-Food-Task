@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import fridgefoodtask.Components.Navbar;
+import fridgefoodtask.Core.Constants;
 
 public class CopyrightPolicyPage extends Navbar {
   WebElement firstElement;
@@ -19,12 +20,12 @@ public class CopyrightPolicyPage extends Navbar {
   }
 
   public String getFirstElement() {
-    firstElement = driver.findElement(By.cssSelector("div[class='content-main']>div>span"));
+    firstElement = driver.findElement(By.cssSelector(Constants.CopyrightFirstElementCssSelector));
     return firstElement.getText();
   }
 
   public List<String> getSecondElement() {
-    ElementsList = driver.findElements(By.xpath("//*[@class='content-main']/div"));
+    ElementsList = driver.findElements(By.xpath(Constants.CopyrightSecondFourthElementXPath));
     List<String> elementList = new ArrayList<String>();
     for (int i = 0; i < 11; i++) {
       int index = 5 + (2 * i);
@@ -34,7 +35,7 @@ public class CopyrightPolicyPage extends Navbar {
   }
 
   public List<String> getThirdElement() {
-    ElementsList = driver.findElements(By.xpath("//*[@class='content-main']/ul[1]/li"));
+    ElementsList = driver.findElements(By.xpath(Constants.CopyrightListXPath(1)));
     List<String> elementList = new ArrayList<String>();
     for (WebElement element : ElementsList) {
       elementList.add(element.getText());
@@ -43,7 +44,7 @@ public class CopyrightPolicyPage extends Navbar {
   }
 
   public List<String> getFourthElement() {
-    ElementsList = driver.findElements(By.xpath("//*[@class='content-main']/div"));
+    ElementsList = driver.findElements(By.xpath(Constants.CopyrightSecondFourthElementXPath));
     List<String> elementList = new ArrayList<String>();
     for (int i = 0; i < 2; i++) {
       int index = 28 + (2 * i);
@@ -53,7 +54,7 @@ public class CopyrightPolicyPage extends Navbar {
   }
 
   public List<String> getFifthElement() {
-    ElementsList = driver.findElements(By.xpath("//*[@class='content-main']/ul[2]/li"));
+    ElementsList = driver.findElements(By.xpath(Constants.CopyrightListXPath(2)));
     List<String> elementList = new ArrayList<String>();
     for (WebElement element : ElementsList) {
       elementList.add(element.getText());
@@ -62,7 +63,7 @@ public class CopyrightPolicyPage extends Navbar {
   }
 
   public List<String> getSixthElement() {
-    ElementsList = driver.findElements(By.xpath("//*[@class='content-main']/p"));
+    ElementsList = driver.findElements(By.xpath(Constants.CopyrightSixthElementXPath));
     List<String> elementList = new ArrayList<String>();
     for (WebElement element : ElementsList) {
       elementList.add(element.getText());
@@ -71,7 +72,7 @@ public class CopyrightPolicyPage extends Navbar {
   }
 
   public List<String> getSeventhElement() {
-    ElementsList = driver.findElements(By.xpath("//*[@class='content-main']/ul[3]/li"));
+    ElementsList = driver.findElements(By.xpath(Constants.CopyrightListXPath(3)));
     List<String> elementList = new ArrayList<String>();
     for (WebElement element : ElementsList) {
       elementList.add(element.getText());

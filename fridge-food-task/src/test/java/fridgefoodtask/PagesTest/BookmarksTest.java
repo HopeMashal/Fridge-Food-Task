@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import fridgefoodtask.Core.CSVFile;
-import fridgefoodtask.Core.Constant;
+import fridgefoodtask.Core.Constants;
 import fridgefoodtask.Core.TaskBase;
 import fridgefoodtask.Pages.BookmarksPage;
 import io.qameta.allure.Allure;
@@ -30,11 +30,11 @@ public class BookmarksTest extends TaskBase {
 
     Allure.step("After Open Bookmarks Page - Take Screen Shot");
     File bookmarksResultPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "BookmarksTest/afterOpenBookmarksPage.jpg");
+        .takeScreenShot(Constants.ScreenShotsPath + "BookmarksTest/afterOpenBookmarksPage.jpg");
     allureAttached.addImage(bookmarksResultPage);
 
     Allure.step("Write Output File of the Bookmarks Page");
-    File bookmarksPageFile = new File(Constant.getCSVFilesPath() + "outputFileOfBookmarksPage.csv");
+    File bookmarksPageFile = new File(Constants.CSVFilesPath + "outputFileOfBookmarksPage.csv");
     CSVFile.writeDataLineByLine(bookmarksPageFile.getPath(),
         bookmarksPage.getFirstPageResults(),
         new String[] { "Recipe Name", "Recipe Link", "Recipe Category", "Recipe Image Source" });
@@ -48,7 +48,7 @@ public class BookmarksTest extends TaskBase {
 
     Allure.step("After Delete the Third Item from Bookmarks - Take Screen Shot");
     File bookmarksPageAfterDelete = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "BookmarksTest/afterDeleteThirdItemFromBookmarks.jpg");
+        .takeScreenShot(Constants.ScreenShotsPath + "BookmarksTest/afterDeleteThirdItemFromBookmarks.jpg");
     allureAttached.addImage(bookmarksPageAfterDelete);
 
     Allure.step("Delete All Items from Bookmarks");
@@ -57,7 +57,7 @@ public class BookmarksTest extends TaskBase {
 
     Allure.step("After Delete All Items from Bookmarks - Take Screen Shot");
     File bookmarksPageAfterDeleteAll = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "BookmarksTest/afterDeleteAllItemsFromBookmarks.jpg");
+        .takeScreenShot(Constants.ScreenShotsPath + "BookmarksTest/afterDeleteAllItemsFromBookmarks.jpg");
     allureAttached.addImage(bookmarksPageAfterDeleteAll);
   }
 }

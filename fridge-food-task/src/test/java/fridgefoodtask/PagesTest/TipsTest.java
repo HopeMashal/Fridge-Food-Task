@@ -8,7 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import fridgefoodtask.Core.CSVFile;
-import fridgefoodtask.Core.Constant;
+import fridgefoodtask.Core.Constants;
 import fridgefoodtask.Core.TaskBase;
 import fridgefoodtask.Core.WordFile;
 import fridgefoodtask.Pages.TipPage;
@@ -32,11 +32,11 @@ public class TipsTest extends TaskBase {
 
     Allure.step("After Open Tips Page - Take Screen Shot");
     File tipsPageImage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "TipsTest/afterOpenTipsPage.jpg");
+        .takeScreenShot(Constants.ScreenShotsPath + "TipsTest/afterOpenTipsPage.jpg");
     allureAttached.addImage(tipsPageImage);
 
     Allure.step("Write Output File of the Tips Page");
-    File tipsFile = new File(Constant.getCSVFilesPath() + "outputFileOfTipsPage.csv");
+    File tipsFile = new File(Constants.CSVFilesPath + "outputFileOfTipsPage.csv");
     CSVFile.writeDataLineByLine(tipsFile.getPath(),
         tipsPage.getFirstPageResults(),
         new String[] { "Tip Name", "Tip Link", "Tip Details", "Tip Image Source" });
@@ -53,11 +53,11 @@ public class TipsTest extends TaskBase {
 
     Allure.step("After Open Tip Page - Take Screen Shot");
     File firstResultPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "TipsTest/afterOpenTipPage.jpg");
+        .takeScreenShot(Constants.ScreenShotsPath + "TipsTest/afterOpenTipPage.jpg");
     allureAttached.addImage(firstResultPage);
 
     Allure.step("Write the Tip Page File");
-    String wordFilePath = Constant.getWordFilesPath() + "TipPageFile.docx";
+    String wordFilePath = Constants.WordFilesPath + "TipPageFile.docx";
     WordFile wordFile = new WordFile(wordFilePath);
     wordFile.AddHeader(driver.getTitle());
     wordFile.AddFooter(driver.getCurrentUrl());

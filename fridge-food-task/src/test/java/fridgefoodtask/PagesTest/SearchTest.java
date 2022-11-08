@@ -10,7 +10,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import fridgefoodtask.Core.CSVFile;
-import fridgefoodtask.Core.Constant;
+import fridgefoodtask.Core.Constants;
 import fridgefoodtask.Core.TaskBase;
 import fridgefoodtask.Core.WordFile;
 import fridgefoodtask.Pages.RecipePage;
@@ -21,7 +21,7 @@ public class SearchTest extends TaskBase {
 
   @DataProvider
   public static Object[][] getInputCSVData() throws Exception {
-    String inputFile = Constant.getCSVFilesPath() + "searchInput.csv";
+    String inputFile = Constants.CSVFilesPath + "searchInput.csv";
     List<String[]> lines = CSVFile.readAllLines(inputFile);
     lines.remove(0);
     Object[][] data = new Object[lines.size()][lines.get(0).length];
@@ -38,7 +38,7 @@ public class SearchTest extends TaskBase {
     Allure.step("Get Data From searchInput.csv File Using Data Provider");
 
     Allure.step("Attach searchInput.csv File");
-    File searchInputFile = new File(Constant.getCSVFilesPath() + "searchInput.csv");
+    File searchInputFile = new File(Constants.CSVFilesPath + "searchInput.csv");
     allureAttached.addFile(searchInputFile, "csv");
 
     Allure.step("Go to " + searchKeyWord + " Search Page Using searchMethod");
@@ -55,11 +55,11 @@ public class SearchTest extends TaskBase {
 
     Allure.step("After Open " + searchKeyWord + "Search Page - Take Screen Shot");
     File searchResultsPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "SearchTest/afterOpen" + searchKeyWord + "SearchPage.jpg");
+        .takeScreenShot(Constants.ScreenShotsPath + "SearchTest/afterOpen" + searchKeyWord + "SearchPage.jpg");
     allureAttached.addImage(searchResultsPage);
 
     Allure.step("Write Output File of the " + searchKeyWord + " Search Page");
-    File searchPageFile = new File(Constant.getCSVFilesPath() + "outputFileOf" + searchKeyWord + "SearchPage.csv");
+    File searchPageFile = new File(Constants.CSVFilesPath + "outputFileOf" + searchKeyWord + "SearchPage.csv");
     CSVFile.writeDataLineByLine(searchPageFile.getPath(),
         searchPage.getFirstPageResults(),
         new String[] { "Recipe Name", "Recipe Link", "Recipe Category", "Recipe Image Source" });
@@ -74,7 +74,7 @@ public class SearchTest extends TaskBase {
         "After Click Bookmarks Button For Second Result in " + searchKeyWord + " Results Page - Take Screen Shot");
     File clickBookmarksForSecondResult = takeScreenShot
         .takeScreenShot(
-            Constant.getScreenShotsPath() + "SearchTest/afterClickBookmarksBtnForSecondResultIn" + searchKeyWord
+            Constants.ScreenShotsPath + "SearchTest/afterClickBookmarksBtnForSecondResultIn" + searchKeyWord
                 + "ResultPage.jpg");
     allureAttached.addImage(clickBookmarksForSecondResult);
 
@@ -87,11 +87,11 @@ public class SearchTest extends TaskBase {
 
     Allure.step("After Open " + searchKeyWord + "Recipe Page - Take Screen Shot");
     File firstResultPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "SearchTest/afterOpen" + searchKeyWord + "RecipePage.jpg");
+        .takeScreenShot(Constants.ScreenShotsPath + "SearchTest/afterOpen" + searchKeyWord + "RecipePage.jpg");
     allureAttached.addImage(firstResultPage);
 
     Allure.step("Write the " + searchKeyWord + " Recipe Page File");
-    String wordFilePath = Constant.getWordFilesPath() + searchKeyWord + "RecipePageFile.docx";
+    String wordFilePath = Constants.WordFilesPath + searchKeyWord + "RecipePageFile.docx";
     WordFile wordFile = new WordFile(wordFilePath);
     wordFile.AddHeader(driver.getTitle());
     wordFile.AddFooter(driver.getCurrentUrl());
@@ -118,7 +118,7 @@ public class SearchTest extends TaskBase {
         "After Click Bookmarks Button From " + searchKeyWord + " Recipe Page - Take Screen Shot");
     File clickBookmarksFromRecipePage = takeScreenShot
         .takeScreenShot(
-            Constant.getScreenShotsPath() + "SearchTest/afterClickBookmarksBtnFrom" + searchKeyWord + "RecipePage.jpg");
+            Constants.ScreenShotsPath + "SearchTest/afterClickBookmarksBtnFrom" + searchKeyWord + "RecipePage.jpg");
     allureAttached.addImage(clickBookmarksFromRecipePage);
   }
 

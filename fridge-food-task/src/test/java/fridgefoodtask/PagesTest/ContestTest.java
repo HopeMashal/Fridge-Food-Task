@@ -8,7 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import fridgefoodtask.Core.CSVFile;
-import fridgefoodtask.Core.Constant;
+import fridgefoodtask.Core.Constants;
 import fridgefoodtask.Core.TaskBase;
 import fridgefoodtask.Core.WordFile;
 import fridgefoodtask.Pages.ContestPage;
@@ -31,11 +31,11 @@ public class ContestTest extends TaskBase {
 
     Allure.step("After Open Contests Page - Take Screen Shot");
     File contestPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "ContestsTest/afterOpenContestsPage.jpg");
+        .takeScreenShot(Constants.ScreenShotsPath + "ContestsTest/afterOpenContestsPage.jpg");
     allureAttached.addImage(contestPage);
 
     Allure.step("Write the Contests Page File");
-    String wordFilePath = Constant.getWordFilesPath() + "ContestsPageFile.docx";
+    String wordFilePath = Constants.WordFilesPath + "ContestsPageFile.docx";
     WordFile wordFile = new WordFile(wordFilePath);
     wordFile.AddHeader(driver.getTitle());
     wordFile.AddFooter(driver.getCurrentUrl());
@@ -52,7 +52,7 @@ public class ContestTest extends TaskBase {
     allureAttached.addFile(contestFile, "doc");
 
     Allure.step("Write Output File of the Contests Archived");
-    File contestArchivedFile = new File(Constant.getCSVFilesPath() + "outputFileOfContestsArchived.csv");
+    File contestArchivedFile = new File(Constants.CSVFilesPath + "outputFileOfContestsArchived.csv");
     CSVFile.writeDataLineByLine(contestArchivedFile.getPath(),
         contestsPage.getArchivedContest(),
         new String[] { "Archived Title", "Archived Date", "Archived Link" });

@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 
 import fridgefoodtask.Components.Card;
 import fridgefoodtask.Components.Result;
+import fridgefoodtask.Core.Constants;
 
 public class SearchPage extends Result {
   List<WebElement> firstPageResults;
@@ -20,7 +21,7 @@ public class SearchPage extends Result {
 
   public List<String[]> getHomeSearchFirstPageResults() {
     List<String[]> results = new ArrayList<String[]>();
-    firstPageResults = driver.findElements(By.cssSelector("div[class='recipe-tile recipe']"));
+    firstPageResults = driver.findElements(By.cssSelector(Constants.FirstPageResultsCssSelector));
     if (!firstPageResults.isEmpty()) {
       for (WebElement result : firstPageResults) {
         Card recipeCard = new Card(driver, result);

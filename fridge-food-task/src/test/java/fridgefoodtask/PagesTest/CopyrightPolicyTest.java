@@ -1,6 +1,6 @@
 package fridgefoodtask.PagesTest;
 
-import fridgefoodtask.Core.Constant;
+import fridgefoodtask.Core.Constants;
 import fridgefoodtask.Core.TaskBase;
 import fridgefoodtask.Core.WordFile;
 import fridgefoodtask.Pages.CopyrightPolicyPage;
@@ -35,12 +35,12 @@ public class CopyrightPolicyTest extends TaskBase {
 
     Allure.step("After Open Copyright Policy Page - Take Screen Shot");
     File copyrightPage = takeScreenShot.takeScreenShot(
-        Constant.getScreenShotsPath() +
+        Constants.ScreenShotsPath +
             "CopyrightPolicyTest/afterOpenCopyrightPolicyPage.jpg");
     allureAttached.addImage(copyrightPage);
 
     Allure.step("Write the Copyright Policy Page File");
-    String wordFilePath = Constant.getWordFilesPath() + "CopyrightPolicyPageFile.docx";
+    String wordFilePath = Constants.WordFilesPath + "CopyrightPolicyPageFile.docx";
     WordFile wordFile = new WordFile(wordFilePath);
     wordFile.AddHeader(driver.getTitle());
     wordFile.AddFooter(driver.getCurrentUrl());

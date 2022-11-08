@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import fridgefoodtask.Components.Navbar;
-import fridgefoodtask.Core.Constant;
+import fridgefoodtask.Core.Constants;
 import fridgefoodtask.Core.DownloadFile;
 
 public class RecipePage extends Navbar {
@@ -30,12 +30,12 @@ public class RecipePage extends Navbar {
   }
 
   public String getRecipeName() {
-    recipeName = driver.findElement(By.cssSelector("div[class='recipe-title']>h1"));
+    recipeName = driver.findElement(By.cssSelector(Constants.RecipeNameCssSelector));
     return recipeName.getText();
   }
 
   public List<String[]> getRecipeTable() {
-    recipeTable = driver.findElements(By.className("recipe-stats"));
+    recipeTable = driver.findElements(By.className(Constants.RecipeTableClassName));
     List<String[]> tableData = new ArrayList<String[]>();
     for (WebElement tableElement : recipeTable) {
       List<WebElement> elements = tableElement.findElements(By.tagName("div"));
@@ -49,21 +49,21 @@ public class RecipePage extends Navbar {
   }
 
   public String getRecipeImgPath() throws MalformedURLException, IOException {
-    recipeImg = driver.findElement(By.className("recipe-image"));
+    recipeImg = driver.findElement(By.className(Constants.RecipeImgClassName));
     String ImgUrl = recipeImg.getAttribute("src").replace(" ", "%20");
     DownloadFile downloadFile = new DownloadFile();
     File image = downloadFile.DownloadFileMethod(ImgUrl,
-        Constant.getDownloadsPath() + getRecipeName().replace(" ", "") + ".jpg");
+        Constants.DownloadsPath + getRecipeName().replace(" ", "") + ".jpg");
     return image.getPath();
   }
 
   public void clickRecipeBookmarksBtn() {
-    bookmarksBtn = driver.findElement(By.cssSelector("div>a[id='bookmark-it']"));
+    bookmarksBtn = driver.findElement(By.cssSelector(Constants.RecipeBookmarksBtnCssSelector));
     JavaScript.executeScript("arguments[0].click();", bookmarksBtn);
   }
 
   public List<String[]> getRecipeInformation() {
-    recipeInformation = driver.findElements(By.cssSelector("div[class='recipe-text']>div"));
+    recipeInformation = driver.findElements(By.cssSelector(Constants.RecipeInformationCssSelector));
     List<String[]> infoList = new ArrayList<String[]>();
     for (WebElement info : recipeInformation) {
       String infoTitle = info.findElement(By.tagName("h3")).getText();

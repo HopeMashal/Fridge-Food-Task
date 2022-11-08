@@ -6,7 +6,7 @@ import java.io.IOException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import fridgefoodtask.Core.Constant;
+import fridgefoodtask.Core.Constants;
 import fridgefoodtask.Core.TaskBase;
 import fridgefoodtask.Core.WordFile;
 import fridgefoodtask.Pages.SubmitRecipePage;
@@ -29,11 +29,11 @@ public class SubmitRecipeTest extends TaskBase {
 
     Allure.step("After Open Submit a Recipe Page - Take Screen Shot");
     File submitPage = takeScreenShot
-        .takeScreenShot(Constant.getScreenShotsPath() + "SubmitRecipeTest/afterOpenSubmitRecipePage.jpg");
+        .takeScreenShot(Constants.ScreenShotsPath + "SubmitRecipeTest/afterOpenSubmitRecipePage.jpg");
     allureAttached.addImage(submitPage);
 
     Allure.step("Write the Submit a Recipe Page File");
-    String wordFilePath = Constant.getWordFilesPath() + "SubmitRecipePageFile.docx";
+    String wordFilePath = Constants.WordFilesPath + "SubmitRecipePageFile.docx";
     WordFile wordFile = new WordFile(wordFilePath);
     wordFile.AddHeader(driver.getTitle());
     wordFile.AddFooter(driver.getCurrentUrl());
