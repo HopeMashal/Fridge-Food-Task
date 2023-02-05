@@ -39,7 +39,6 @@ public class ProfileTest extends TaskBase {
 
     Allure.step("Scroll Down 350px to Show Profile Page");
     JavaScript.executeScript("window.scrollTo(0,350)");
-    Thread.sleep(3000);
 
     Allure.step("After Open Profile Page - Take Screen Shot");
     File myProfilePage = takeScreenShot

@@ -2,8 +2,11 @@ package fridgefoodtask.PagesTest;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -52,7 +55,8 @@ public class LogInTest extends TaskBase {
 
     Allure.step("Accept Alert - Login Message");
     try {
-      Thread.sleep(5000);
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+      wait.until(ExpectedConditions.alertIsPresent());
       driver.switchTo().alert().accept();
     } catch (Exception e) {
       Assert.fail("Login Failed");

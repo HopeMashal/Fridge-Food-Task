@@ -23,50 +23,75 @@ public class ContestPage extends Navbar {
 
   public ContestPage(WebDriver driver) {
     super(driver);
-    // TODO Auto-generated constructor stub
   }
 
   public String getContestTitle() {
-    contestTitle = driver.findElement(By.cssSelector(Constants.ContestTipTitleCssSelector));
-    return contestTitle.getText();
+    String contestTitleText;
+    try {
+      contestTitle = driver.findElement(By.cssSelector(Constants.ContestTipTitleCssSelector));
+      contestTitleText = contestTitle.getText();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND CONTEST TITLE");
+      contestTitleText = "NONE";
+    }
+    return contestTitleText;
   }
 
   public List<String> getContestParagraphs() {
-    contestParagraphs = driver.findElements(By.cssSelector(Constants.ContestPTipDescCssSelector));
     List<String> paragraphsList = new ArrayList<String>();
-    for (WebElement paragraph : contestParagraphs) {
-      if (!paragraph.getText().isEmpty())
-        paragraphsList.add(paragraph.getText());
+    try {
+      contestParagraphs = driver.findElements(By.cssSelector(Constants.ContestPTipDescCssSelector));
+      for (WebElement paragraph : contestParagraphs) {
+        if (!paragraph.getText().isEmpty())
+          paragraphsList.add(paragraph.getText());
+      }
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND CONTEST PARAGRAPHS");
     }
     return paragraphsList;
   }
 
   public List<String> getContestList() {
-    contestList = driver.findElements(By.cssSelector(Constants.ContestListCssSelector));
     List<String> contestsList = new ArrayList<String>();
-    for (WebElement element : contestList) {
-      contestsList.add(element.getText());
+    try {
+      contestList = driver.findElements(By.cssSelector(Constants.ContestListCssSelector));
+      for (WebElement element : contestList) {
+        contestsList.add(element.getText());
+      }
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND CONTEST LIST");
     }
     return contestsList;
   }
 
   public String getContestImgPath() throws MalformedURLException, IOException {
-    contestImg = driver.findElement(By.cssSelector(Constants.ContestImgCssSelector));
-    String ImgUrl = contestImg.getAttribute("src").replace(" ", "%20");
-    DownloadFile downloadFile = new DownloadFile();
-    File image = downloadFile.DownloadFileMethod(ImgUrl,
-        Constants.DownloadsPath + getContestTitle().replace(" ", "") + ".jpg");
-    return image.getPath();
+    String imgPath;
+    try {
+      contestImg = driver.findElement(By.cssSelector(Constants.ContestImgCssSelector));
+      String ImgUrl = contestImg.getAttribute("src").replace(" ", "%20");
+      DownloadFile downloadFile = new DownloadFile();
+      File image = downloadFile.DownloadFileMethod(ImgUrl,
+          Constants.DownloadsPath + getContestTitle().replace(" ", "") + ".jpg");
+      imgPath = image.getPath();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND IMAGE PATH");
+      imgPath = "NONE";
+    }
+    return imgPath;
   }
 
   public List<String[]> getArchivedContest() {
-    archivedContest = driver.findElements(By.cssSelector(Constants.ContestArchivedListCssSelector));
     List<String[]> archivedContestsList = new ArrayList<String[]>();
-    for (WebElement element : archivedContest) {
-      String archivedTitle = element.findElement(By.tagName("a")).getText();
-      String archivedDate = element.findElement(By.tagName("span")).getText();
-      String archivedHref = element.findElement(By.tagName("a")).getAttribute("href");
-      archivedContestsList.add(new String[] { archivedTitle, archivedDate, archivedHref });
+    try {
+      archivedContest = driver.findElements(By.cssSelector(Constants.ContestArchivedListCssSelector));
+      for (WebElement element : archivedContest) {
+        String archivedTitle = element.findElement(By.tagName("a")).getText();
+        String archivedDate = element.findElement(By.tagName("span")).getText();
+        String archivedHref = element.findElement(By.tagName("a")).getAttribute("href");
+        archivedContestsList.add(new String[] { archivedTitle, archivedDate, archivedHref });
+      }
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND ARCHIVED CONTESTS LIST");
     }
     return archivedContestsList;
   }

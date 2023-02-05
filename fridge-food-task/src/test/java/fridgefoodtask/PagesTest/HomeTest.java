@@ -2,9 +2,13 @@ package fridgefoodtask.PagesTest;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -88,7 +92,8 @@ public class HomeTest extends TaskBase {
         "Click Find Recipes Button in Home Page, then the Search Page Will Open Using the Selection of Ingredients");
     homePage.clickFindRecipesBtn();
     SearchPage searchPage = new SearchPage(driver);
-    Thread.sleep(3000);
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Constants.RecipeContainerXPath)));
 
     Allure.step("Check URL & Title of Search Page Using the Selection of Ingredients");
     String[] searchHref = searchPage.searchIngredientsHref();

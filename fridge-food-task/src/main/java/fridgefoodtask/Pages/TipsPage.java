@@ -8,7 +8,6 @@ public class TipsPage extends Result {
 
   public TipsPage(WebDriver driver) {
     super(driver);
-    // TODO Auto-generated constructor stub
   }
 
 }

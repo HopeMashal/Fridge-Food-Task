@@ -9,6 +9,7 @@ public class PropertiesFile {
     FileReader readFile = new FileReader(filePath);
     Properties prop = new Properties();
     prop.load(readFile);
-    return prop.getProperty(propertyName);
+    String propertyValue = prop.getProperty(propertyName);
+    return propertyValue;
   }
 }

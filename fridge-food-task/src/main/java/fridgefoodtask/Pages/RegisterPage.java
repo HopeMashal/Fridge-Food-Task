@@ -21,38 +21,73 @@ public class RegisterPage extends Navbar {
 
   public RegisterPage(WebDriver driver) {
     super(driver);
-    // TODO Auto-generated constructor stub
   }
 
   public void registerMethod(String firstName, String lastName, String country, String state, String city, String email,
       String password) {
-    firstNameBox = driver.findElement(By.id(Constants.FirstNameBoxID));
-    firstNameBox.sendKeys(firstName);
-    lastNameBox = driver.findElement(By.id(Constants.LastNameBoxID));
-    lastNameBox.sendKeys(lastName);
-    countryBox = driver.findElement(By.id(Constants.CountryBoxID));
-    Select countries = new Select(countryBox);
-    countries.selectByValue(country);
-    if (driver.findElements(By.cssSelector(Constants.CheckStateCssSelector)).size() > 2) {
-      stateBox = driver.findElement(By.id(Constants.StateSelectID));
-      Select states = new Select(stateBox);
-      states.selectByValue(state);
-    } else {
-      stateBox = driver.findElement(By.id(Constants.StateBoxID));
-      stateBox.sendKeys(state);
+    try {
+      firstNameBox = driver.findElement(By.id(Constants.FirstNameBoxID));
+      firstNameBox.sendKeys(firstName);
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND FIRST NAME BOX");
     }
-    cityBox = driver.findElement(By.id(Constants.CityBoxID));
-    cityBox.sendKeys(city);
-    emailBox = driver.findElement(By.id(Constants.EmailBoxID));
-    emailBox.sendKeys(email);
-    passwordBox = driver.findElement(By.id(Constants.PasswordBoxID));
-    passwordBox.sendKeys(password);
-    confirmPasswordBox = driver.findElement(By.id(Constants.ConfirmPasswordBoxID));
-    confirmPasswordBox.sendKeys(password);
+    try {
+      lastNameBox = driver.findElement(By.id(Constants.LastNameBoxID));
+      lastNameBox.sendKeys(lastName);
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND LAST NAME BOX");
+    }
+    try {
+      countryBox = driver.findElement(By.id(Constants.CountryBoxID));
+      Select countries = new Select(countryBox);
+      countries.selectByValue(country);
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND COUNTRY BOX");
+    }
+    try {
+      if (driver.findElements(By.cssSelector(Constants.CheckStateCssSelector)).size() > 2) {
+        stateBox = driver.findElement(By.id(Constants.StateSelectID));
+        Select states = new Select(stateBox);
+        states.selectByValue(state);
+      } else {
+        stateBox = driver.findElement(By.id(Constants.StateBoxID));
+        stateBox.sendKeys(state);
+      }
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND STATE BOX");
+    }
+    try {
+      cityBox = driver.findElement(By.id(Constants.CityBoxID));
+      cityBox.sendKeys(city);
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND CITY BOX");
+    }
+    try {
+      emailBox = driver.findElement(By.id(Constants.EmailBoxID));
+      emailBox.sendKeys(email);
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND EMAIL BOX");
+    }
+    try {
+      passwordBox = driver.findElement(By.id(Constants.PasswordBoxID));
+      passwordBox.sendKeys(password);
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND PASSWORD BOX");
+    }
+    try {
+      confirmPasswordBox = driver.findElement(By.id(Constants.ConfirmPasswordBoxID));
+      confirmPasswordBox.sendKeys(password);
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND CONFIRM PASSWORD BOX");
+    }
   }
 
   public void clickSubmitBtn() {
-    submitBtn = driver.findElement(By.id(Constants.SubmitBtnID));
-    submitBtn.click();
+    try {
+      submitBtn = driver.findElement(By.id(Constants.SubmitBtnID));
+      submitBtn.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND SUBMIT BUTTON");
+    }
   }
 }

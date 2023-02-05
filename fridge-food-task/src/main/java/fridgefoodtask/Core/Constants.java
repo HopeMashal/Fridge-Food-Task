@@ -52,6 +52,7 @@ public class Constants {
   public static String CopyrightSecondFourthElementXPath = "//*[@class='content-main']/div";
   public static String CopyrightSixthElementXPath = "//*[@class='content-main']/p";
   public static String SubmitBtnXPath = "//div[contains(@class,'SubmitRecipe')]";
+  public static String RecipeContainerXPath = "//div[contains(@class,'recipe-tile-wrapper')]";
 
   public static String SearchBoxID = "search-box";
   public static String EmailBoxID = "txtEmail";

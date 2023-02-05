@@ -26,50 +26,75 @@ public class RecipePage extends Navbar {
   public RecipePage(WebDriver driver) {
     super(driver);
     JavaScript = (JavascriptExecutor) driver;
-    // TODO Auto-generated constructor stub
   }
 
   public String getRecipeName() {
-    recipeName = driver.findElement(By.cssSelector(Constants.RecipeNameCssSelector));
-    return recipeName.getText();
+    String recipeNameText;
+    try {
+      recipeName = driver.findElement(By.cssSelector(Constants.RecipeNameCssSelector));
+      recipeNameText = recipeName.getText();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND RECIPE NAME");
+      recipeNameText = "NONE";
+    }
+    return recipeNameText;
   }
 
   public List<String[]> getRecipeTable() {
-    recipeTable = driver.findElements(By.className(Constants.RecipeTableClassName));
     List<String[]> tableData = new ArrayList<String[]>();
-    for (WebElement tableElement : recipeTable) {
-      List<WebElement> elements = tableElement.findElements(By.tagName("div"));
-      String[] elementList = new String[elements.size()];
-      for (int i = 0; i < elementList.length; i++) {
-        elementList[i] = elements.get(i).getText();
+    try {
+      recipeTable = driver.findElements(By.className(Constants.RecipeTableClassName));
+      for (WebElement tableElement : recipeTable) {
+        List<WebElement> elements = tableElement.findElements(By.tagName("div"));
+        String[] elementList = new String[elements.size()];
+        for (int i = 0; i < elementList.length; i++) {
+          elementList[i] = elements.get(i).getText();
+        }
+        tableData.add(elementList);
       }
-      tableData.add(elementList);
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND RECIPE TABLE");
     }
     return tableData;
   }
 
   public String getRecipeImgPath() throws MalformedURLException, IOException {
-    recipeImg = driver.findElement(By.className(Constants.RecipeImgClassName));
-    String ImgUrl = recipeImg.getAttribute("src").replace(" ", "%20");
-    DownloadFile downloadFile = new DownloadFile();
-    File image = downloadFile.DownloadFileMethod(ImgUrl,
-        Constants.DownloadsPath + getRecipeName().replace(" ", "") + ".jpg");
-    return image.getPath();
+    String recipeImgPath;
+    try {
+      recipeImg = driver.findElement(By.className(Constants.RecipeImgClassName));
+      String ImgUrl = recipeImg.getAttribute("src").replace(" ", "%20");
+      DownloadFile downloadFile = new DownloadFile();
+      File image = downloadFile.DownloadFileMethod(ImgUrl,
+          Constants.DownloadsPath + getRecipeName().replace(" ", "") + ".jpg");
+      recipeImgPath = image.getPath();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND RECIPE IMAGE PATH");
+      recipeImgPath = "NONE";
+    }
+    return recipeImgPath;
   }
 
   public void clickRecipeBookmarksBtn() {
-    bookmarksBtn = driver.findElement(By.cssSelector(Constants.RecipeBookmarksBtnCssSelector));
-    JavaScript.executeScript("arguments[0].click();", bookmarksBtn);
+    try {
+      bookmarksBtn = driver.findElement(By.cssSelector(Constants.RecipeBookmarksBtnCssSelector));
+      JavaScript.executeScript("arguments[0].click();", bookmarksBtn);
+    } catch (Exception e) {
+      System.out.println("CAN'T CLICK BOOKMARK BUTTON");
+    }
   }
 
   public List<String[]> getRecipeInformation() {
-    recipeInformation = driver.findElements(By.cssSelector(Constants.RecipeInformationCssSelector));
     List<String[]> infoList = new ArrayList<String[]>();
-    for (WebElement info : recipeInformation) {
-      String infoTitle = info.findElement(By.tagName("h3")).getText();
-      String infoText = info.getText().replaceFirst(infoTitle + "\n", "");
-      String[] information = new String[] { infoTitle, infoText };
-      infoList.add(information);
+    try {
+      recipeInformation = driver.findElements(By.cssSelector(Constants.RecipeInformationCssSelector));
+      for (WebElement info : recipeInformation) {
+        String infoTitle = info.findElement(By.tagName("h3")).getText();
+        String infoText = info.getText().replaceFirst(infoTitle + "\n", "");
+        String[] information = new String[] { infoTitle, infoText };
+        infoList.add(information);
+      }
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND RECIPE INFORMATION");
     }
     return infoList;
   }

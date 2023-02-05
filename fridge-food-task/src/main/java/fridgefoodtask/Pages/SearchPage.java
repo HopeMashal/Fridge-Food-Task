@@ -16,27 +16,30 @@ public class SearchPage extends Result {
 
   public SearchPage(WebDriver driver) {
     super(driver);
-    // TODO Auto-generated constructor stub
   }
 
   public List<String[]> getHomeSearchFirstPageResults() {
     List<String[]> results = new ArrayList<String[]>();
-    firstPageResults = driver.findElements(By.cssSelector(Constants.FirstPageResultsCssSelector));
-    if (!firstPageResults.isEmpty()) {
-      for (WebElement result : firstPageResults) {
-        Card recipeCard = new Card(driver, result);
-        String resultLink = recipeCard.getCardLink();
-        String resultName = recipeCard.getCardName();
-        String resultCookingTime = recipeCard.getRecipeCardCookingTime();
-        String resultImgSrc = recipeCard.getCardImgSrc();
-        String resultIngredients = recipeCard.getRecipeCardIngredients();
-        String[] resultValues = new String[] { resultName, resultLink, resultCookingTime, resultImgSrc,
-            resultIngredients };
+    try {
+      firstPageResults = driver.findElements(By.cssSelector(Constants.FirstPageResultsCssSelector));
+      if (!firstPageResults.isEmpty()) {
+        for (WebElement result : firstPageResults) {
+          Card recipeCard = new Card(driver, result);
+          String resultLink = recipeCard.getCardLink();
+          String resultName = recipeCard.getCardName();
+          String resultCookingTime = recipeCard.getRecipeCardCookingTime();
+          String resultImgSrc = recipeCard.getCardImgSrc();
+          String resultIngredients = recipeCard.getRecipeCardIngredients();
+          String[] resultValues = new String[] { resultName, resultLink, resultCookingTime, resultImgSrc,
+              resultIngredients };
+          results.add(resultValues);
+        }
+      } else {
+        String[] resultValues = new String[] { "", "", "", "", "" };
         results.add(resultValues);
       }
-    } else {
-      String[] resultValues = new String[] { "", "", "", "", "" };
-      results.add(resultValues);
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND RESULT");
     }
     return results;
   }

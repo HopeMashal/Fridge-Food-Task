@@ -17,26 +17,37 @@ public class HomePage extends Navbar {
 
   public HomePage(WebDriver driver) {
     super(driver);
-    // TODO Auto-generated constructor stub
   }
 
   public void clickClearAllBtn() {
-    if (!driver.findElements(By.cssSelector(Constants.CheckClearBtnCssSelector))
-        .isEmpty()) {
-      clearBtn = driver.findElement(By.cssSelector(Constants.ClearBtnCssSelector));
-      clearBtn.click();
+    try {
+      if (!driver.findElements(By.cssSelector(Constants.CheckClearBtnCssSelector))
+          .isEmpty()) {
+        clearBtn = driver.findElement(By.cssSelector(Constants.ClearBtnCssSelector));
+        clearBtn.click();
+      }
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND CLEAR ALL BUTTON");
     }
   }
 
   public void clickFindRecipesBtn() {
-    findRecipesBtn = driver.findElement(By.cssSelector(Constants.FindRecipesBtnCssSelector));
-    findRecipesBtn.click();
+    try {
+      findRecipesBtn = driver.findElement(By.cssSelector(Constants.FindRecipesBtnCssSelector));
+      findRecipesBtn.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND - FIND RECIPES BUTTON");
+    }
   }
 
   public void clickSelectIngredientCheckBox(int index) {
-    ingredientCheckBoxes = driver.findElements(By.cssSelector(
-        Constants.IngredientCheckBoxCssSelector));
-    selectIngredientCheckBox = ingredientCheckBoxes.get(index);
-    selectIngredientCheckBox.click();
+    try {
+      ingredientCheckBoxes = driver.findElements(By.cssSelector(
+          Constants.IngredientCheckBoxCssSelector));
+      selectIngredientCheckBox = ingredientCheckBoxes.get(index);
+      selectIngredientCheckBox.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND INGREDIENT CHECKBOX");
+    }
   }
 }

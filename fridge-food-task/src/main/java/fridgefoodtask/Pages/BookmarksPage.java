@@ -10,11 +10,16 @@ public class BookmarksPage extends Result {
 
   public BookmarksPage(WebDriver driver) {
     super(driver);
-    // TODO Auto-generated constructor stub
   }
 
   public int getBookmarksNumbers() {
-    int bookmarksNumbers = driver.findElements(By.cssSelector(Constants.FirstPageResultsCssSelector)).size();
+    int bookmarksNumbers;
+    try {
+      bookmarksNumbers = driver.findElements(By.cssSelector(Constants.FirstPageResultsCssSelector)).size();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND BOOKMARKS");
+      bookmarksNumbers = 0;
+    }
     return bookmarksNumbers;
   }
 

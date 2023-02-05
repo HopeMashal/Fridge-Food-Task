@@ -15,23 +15,34 @@ public class LogInPage extends Navbar {
 
   public LogInPage(WebDriver driver) {
     super(driver);
-    // TODO Auto-generated constructor stub
   }
 
   public void LogInMethod(String email, String password) {
-    emailBox = driver.findElement(By.id(Constants.EmailBoxID));
-    emailBox.sendKeys(email);
-    passwordBox = driver.findElement(By.id(Constants.PasswordBoxID));
-    passwordBox.sendKeys(password);
+    try {
+      emailBox = driver.findElement(By.id(Constants.EmailBoxID));
+      emailBox.sendKeys(email);
+      passwordBox = driver.findElement(By.id(Constants.PasswordBoxID));
+      passwordBox.sendKeys(password);
+    } catch (Exception e) {
+      System.out.println("CAN'T FILL LOGIN INPUTS");
+    }
   }
 
   public void clickSubmitBtn() {
-    loginBtn = driver.findElement(By.id(Constants.SubmitBtnID));
-    loginBtn.click();
+    try {
+      loginBtn = driver.findElement(By.id(Constants.SubmitBtnID));
+      loginBtn.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND SUBMIT BUTTON");
+    }
   }
 
   public void clickRegisterBtn() {
-    registerBtn = driver.findElement(By.id(Constants.RegistrationBtnID));
-    registerBtn.click();
+    try {
+      registerBtn = driver.findElement(By.id(Constants.RegistrationBtnID));
+      registerBtn.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND REGISTER BUTTON");
+    }
   }
 }

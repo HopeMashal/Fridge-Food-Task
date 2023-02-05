@@ -18,64 +18,122 @@ public class ProfilePage extends Navbar {
 
   public ProfilePage(WebDriver driver) {
     super(driver);
-    // TODO Auto-generated constructor stub
   }
 
   public String getFirstNameValue() {
-    firstNameBox = driver.findElement(By.id(Constants.FirstNameBoxID));
-    return firstNameBox.getAttribute("value");
+    String firstName;
+    try {
+      firstNameBox = driver.findElement(By.id(Constants.FirstNameBoxID));
+      firstName = firstNameBox.getAttribute("value");
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND FIRST NAME BOX");
+      firstName = "NONE";
+    }
+    return firstName;
   }
 
   public String getLastNameValue() {
-    lastNameBox = driver.findElement(By.id(Constants.LastNameBoxID));
-    return lastNameBox.getAttribute("value");
+    String lastName;
+    try {
+      lastNameBox = driver.findElement(By.id(Constants.LastNameBoxID));
+      lastName = lastNameBox.getAttribute("value");
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND LAST NAME BOX");
+      lastName = "NONE";
+    }
+    return lastName;
   }
 
   public String getCountryValue() {
-    countryBox = driver.findElement(By.id(Constants.CountryBoxID));
-    return countryBox.getAttribute("value");
+    String country;
+    try {
+      countryBox = driver.findElement(By.id(Constants.CountryBoxID));
+      country = countryBox.getAttribute("value");
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND COUNTRY BOX");
+      country = "NONE";
+    }
+    return country;
   }
 
   public String getStateValue() {
-    if (driver.findElements(By.cssSelector(Constants.CheckStateCssSelector)).size() > 2) {
-      stateBox = driver.findElement(By.id(Constants.StateSelectID));
-    } else {
-      stateBox = driver.findElement(By.id(Constants.StateBoxID));
+    String state;
+    try {
+      if (driver.findElements(By.cssSelector(Constants.CheckStateCssSelector)).size() > 2) {
+        stateBox = driver.findElement(By.id(Constants.StateSelectID));
+      } else {
+        stateBox = driver.findElement(By.id(Constants.StateBoxID));
+      }
+      state = stateBox.getAttribute("value");
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND STATE BOX");
+      state = "NONE";
     }
-    return stateBox.getAttribute("value");
+    return state;
   }
 
   public String getCityValue() {
-    cityBox = driver.findElement(By.id(Constants.CityBoxID));
-    return cityBox.getAttribute("value");
+    String city;
+    try {
+      cityBox = driver.findElement(By.id(Constants.CityBoxID));
+      city = cityBox.getAttribute("value");
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND CITY BOX");
+      city = "NONE";
+    }
+    return city;
   }
 
   public void editProfile(String firstName, String lastName, String country, String state, String city) {
-    firstNameBox = driver.findElement(By.id(Constants.FirstNameBoxID));
-    firstNameBox.clear();
-    firstNameBox.sendKeys(firstName);
-    lastNameBox = driver.findElement(By.id(Constants.LastNameBoxID));
-    lastNameBox.clear();
-    lastNameBox.sendKeys(lastName);
-    countryBox = driver.findElement(By.id(Constants.CountryBoxID));
-    Select countries = new Select(countryBox);
-    countries.selectByValue(country);
-    if (driver.findElements(By.cssSelector(Constants.CheckStateCssSelector)).size() > 2) {
-      stateBox = driver.findElement(By.id(Constants.StateSelectID));
-      Select states = new Select(stateBox);
-      states.selectByValue(state);
-    } else {
-      stateBox = driver.findElement(By.id(Constants.StateBoxID));
-      stateBox.clear();
-      stateBox.sendKeys(state);
+    try {
+      firstNameBox = driver.findElement(By.id(Constants.FirstNameBoxID));
+      firstNameBox.clear();
+      firstNameBox.sendKeys(firstName);
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND FIRST NAME BOX");
     }
-    cityBox = driver.findElement(By.id(Constants.CityBoxID));
-    cityBox.clear();
-    cityBox.sendKeys(city);
+    try {
+      lastNameBox = driver.findElement(By.id(Constants.LastNameBoxID));
+      lastNameBox.clear();
+      lastNameBox.sendKeys(lastName);
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND LAST NAME BOX");
+    }
+    try {
+      countryBox = driver.findElement(By.id(Constants.CountryBoxID));
+      Select countries = new Select(countryBox);
+      countries.selectByValue(country);
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND COUNTRY BOX");
+    }
+    try {
+      if (driver.findElements(By.cssSelector(Constants.CheckStateCssSelector)).size() > 2) {
+        stateBox = driver.findElement(By.id(Constants.StateSelectID));
+        Select states = new Select(stateBox);
+        states.selectByValue(state);
+      } else {
+        stateBox = driver.findElement(By.id(Constants.StateBoxID));
+        stateBox.clear();
+        stateBox.sendKeys(state);
+      }
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND STATE BOX");
+    }
+    try {
+      cityBox = driver.findElement(By.id(Constants.CityBoxID));
+      cityBox.clear();
+      cityBox.sendKeys(city);
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND CITY BOX");
+    }
   }
 
   public void clickSubmitBtn() {
-    submitBtn = driver.findElement(By.id(Constants.SubmitBtnID));
-    submitBtn.click();
+    try {
+      submitBtn = driver.findElement(By.id(Constants.SubmitBtnID));
+      submitBtn.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND SUBMIT BUTTON");
+    }
   }
 }

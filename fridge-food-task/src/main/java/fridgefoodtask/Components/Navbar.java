@@ -26,108 +26,196 @@ public class Navbar {
   }
 
   public void clickLoginBtn() {
-    loginBtn = driver.findElement(By.xpath(Constants.LoginBtnXPath));
-    loginBtn.click();
+    try {
+      loginBtn = driver.findElement(By.xpath(Constants.LoginBtnXPath));
+      loginBtn.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND LOGIN BUTTON");
+    }
   }
 
   public void clickLogoutBtn() {
-    logoutBtn = driver.findElement(By.xpath(Constants.LogoutBtnXPath));
-    logoutBtn.click();
+    try {
+      logoutBtn = driver.findElement(By.xpath(Constants.LogoutBtnXPath));
+      logoutBtn.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND LOGOUT BUTTON");
+    }
   }
 
   public void clickHomeBtn() {
-    homeBtn = driver.findElement(By.xpath(Constants.HomeBtnXPath));
-    homeBtn.click();
+    try {
+      homeBtn = driver.findElement(By.xpath(Constants.HomeBtnXPath));
+      homeBtn.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND HOME BUTTON");
+    }
   }
 
   public void clickBookmarksBtn() {
-    bookmarksBtn = driver.findElement(By.xpath(Constants.BookmarksBtnXPath));
-    bookmarksBtn.click();
+    try {
+      bookmarksBtn = driver.findElement(By.xpath(Constants.BookmarksBtnXPath));
+      bookmarksBtn.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND BOOKMARK BUTTON");
+    }
   }
 
   public void clickContestsBtn() {
-    contestsBtn = driver.findElement(By.xpath(Constants.ContestsBtnXPath));
-    contestsBtn.click();
+    try {
+      contestsBtn = driver.findElement(By.xpath(Constants.ContestsBtnXPath));
+      contestsBtn.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND CONTESTS BUTTON");
+    }
   }
 
   public void clickTipsBtn() {
-    tipsBtn = driver.findElement(By.xpath(Constants.TipsBtnXPath));
-    tipsBtn.click();
+    try {
+      tipsBtn = driver.findElement(By.xpath(Constants.TipsBtnXPath));
+      tipsBtn.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND TIPS BUTTON");
+    }
   }
 
   public void clickSubmitRecipeBtn() {
-    submitRecipeBtn = driver.findElement(By.xpath(Constants.SubmitRecipeBtnXPath));
-    submitRecipeBtn.click();
+    try {
+      submitRecipeBtn = driver.findElement(By.xpath(Constants.SubmitRecipeBtnXPath));
+      submitRecipeBtn.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND SUBMIT RECIPE BUTTON");
+    }
   }
 
   public void clickDeciderBtn() {
-    deciderBtn = driver.findElement(By.xpath(Constants.DeciderBtnXPath));
-    deciderBtn.click();
+    try {
+      deciderBtn = driver.findElement(By.xpath(Constants.DeciderBtnXPath));
+      deciderBtn.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND DECIDER BUTTON");
+    }
   }
 
   public void clickCopyrightPolicyBtn() {
-    copyrightPolicyBtn = driver.findElement(By.xpath(Constants.CopyrightPolicyBtnXPath));
-    copyrightPolicyBtn.click();
+    try {
+      copyrightPolicyBtn = driver.findElement(By.xpath(Constants.CopyrightPolicyBtnXPath));
+      copyrightPolicyBtn.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND COPYRIGHT POLICY BUTTON");
+    }
   }
 
   public void clickMyProfileBtn() {
-    myProfileBtn = driver.findElement(By.xpath(Constants.MyProfileBtnXPath));
-    myProfileBtn.click();
+    try {
+      myProfileBtn = driver.findElement(By.xpath(Constants.MyProfileBtnXPath));
+      myProfileBtn.click();
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND PROFILE BUTTON");
+    }
   }
 
   public String[] homeHref() {
-    homeBtn = driver.findElement(By.xpath(Constants.HomeBtnXPath));
-    String homeHrefValue = homeBtn.getAttribute("href");
-    String[] homeList = new String[] { "MyFridgeFood - Home", homeHrefValue };
+    String[] homeList;
+    try {
+      homeBtn = driver.findElement(By.xpath(Constants.HomeBtnXPath));
+      String homeHrefValue = homeBtn.getAttribute("href");
+      homeList = new String[] { "MyFridgeFood - Home", homeHrefValue };
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND HOME PAGE HREF");
+      homeList = new String[] { "NONE" };
+    }
     return homeList;
   }
 
   public String[] bookmarksHref() {
-    bookmarksBtn = driver.findElement(By.xpath(Constants.BookmarksBtnXPath));
-    String bookmarksHrefValue = bookmarksBtn.getAttribute("href");
-    String[] bookmarksList = new String[] { "MyFridgeFood - Bookmarks", bookmarksHrefValue };
+    String[] bookmarksList;
+    try {
+      bookmarksBtn = driver.findElement(By.xpath(Constants.BookmarksBtnXPath));
+      String bookmarksHrefValue = bookmarksBtn.getAttribute("href");
+      bookmarksList = new String[] { "MyFridgeFood - Bookmarks", bookmarksHrefValue };
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND BOOKMARKS PAGE HREF");
+      bookmarksList = new String[] { "NONE" };
+    }
     return bookmarksList;
   }
 
   public String[] contestsHref() {
-    contestsBtn = driver.findElement(By.xpath(Constants.ContestsBtnXPath));
-    String contestsHrefValue = contestsBtn.getAttribute("href");
-    String[] contestsList = new String[] { "MyFridgeFood - Contests", contestsHrefValue };
+    String[] contestsList;
+    try {
+      contestsBtn = driver.findElement(By.xpath(Constants.ContestsBtnXPath));
+      String contestsHrefValue = contestsBtn.getAttribute("href");
+      contestsList = new String[] { "MyFridgeFood - Contests", contestsHrefValue };
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND CONTESTS PAGE HREF");
+      contestsList = new String[] { "NONE" };
+    }
     return contestsList;
   }
 
   public String[] tipsHref() {
-    tipsBtn = driver.findElement(By.xpath(Constants.TipsBtnXPath));
-    String tipsHrefValue = tipsBtn.getAttribute("href");
-    String[] tipsList = new String[] { "MyFridgeFood - Tips", tipsHrefValue };
+    String[] tipsList;
+    try {
+      tipsBtn = driver.findElement(By.xpath(Constants.TipsBtnXPath));
+      String tipsHrefValue = tipsBtn.getAttribute("href");
+      tipsList = new String[] { "MyFridgeFood - Tips", tipsHrefValue };
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND TIPS PAGE HREF");
+      tipsList = new String[] { "NONE" };
+    }
     return tipsList;
   }
 
   public String[] submitRecipeHref() {
-    submitRecipeBtn = driver.findElement(By.xpath(Constants.SubmitRecipeBtnXPath));
-    String submitRecipeHrefValue = submitRecipeBtn.getAttribute("href");
-    String[] submitRecipeList = new String[] { "MyFridgeFood - Submit a Recipe", submitRecipeHrefValue };
+    String[] submitRecipeList;
+    try {
+      submitRecipeBtn = driver.findElement(By.xpath(Constants.SubmitRecipeBtnXPath));
+      String submitRecipeHrefValue = submitRecipeBtn.getAttribute("href");
+      submitRecipeList = new String[] { "MyFridgeFood - Submit a Recipe", submitRecipeHrefValue };
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND SUBMIT RECIPE PAGE HREF");
+      submitRecipeList = new String[] { "NONE" };
+    }
     return submitRecipeList;
   }
 
   public String[] deciderHref() {
-    deciderBtn = driver.findElement(By.xpath(Constants.DeciderBtnXPath));
-    String deciderHrefValue = deciderBtn.getAttribute("href");
-    String[] deciderList = new String[] { "MyFridgeFood - The Decider", deciderHrefValue };
+    String[] deciderList;
+    try {
+      deciderBtn = driver.findElement(By.xpath(Constants.DeciderBtnXPath));
+      String deciderHrefValue = deciderBtn.getAttribute("href");
+      deciderList = new String[] { "MyFridgeFood - The Decider", deciderHrefValue };
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND DECIDER PAGE HREF");
+      deciderList = new String[] { "NONE" };
+    }
     return deciderList;
   }
 
   public String[] copyrightPolicyHref() {
-    copyrightPolicyBtn = driver.findElement(By.xpath(Constants.CopyrightPolicyBtnXPath));
-    String copyrightPolicyHrefValue = copyrightPolicyBtn.getAttribute("href");
-    String[] copyrightPolicyList = new String[] { "MyFridgeFood - Copyright Policy", copyrightPolicyHrefValue };
+    String[] copyrightPolicyList;
+    try {
+      copyrightPolicyBtn = driver.findElement(By.xpath(Constants.CopyrightPolicyBtnXPath));
+      String copyrightPolicyHrefValue = copyrightPolicyBtn.getAttribute("href");
+      copyrightPolicyList = new String[] { "MyFridgeFood - Copyright Policy", copyrightPolicyHrefValue };
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND COPYRIGHT POLICY PAGE HREF");
+      copyrightPolicyList = new String[] { "NONE" };
+    }
     return copyrightPolicyList;
   }
 
   public String[] myProfileHref() {
-    myProfileBtn = driver.findElement(By.xpath(Constants.MyProfileBtnXPath));
-    String myProfileHrefValue = myProfileBtn.getAttribute("href");
-    String[] myProfileList = new String[] { "MyFridgeFood - MyProfile", myProfileHrefValue };
+    String[] myProfileList;
+    try {
+      myProfileBtn = driver.findElement(By.xpath(Constants.MyProfileBtnXPath));
+      String myProfileHrefValue = myProfileBtn.getAttribute("href");
+      myProfileList = new String[] { "MyFridgeFood - MyProfile", myProfileHrefValue };
+    } catch (Exception e) {
+      System.out.println("CAN'T FIND PROFILE PAGE HREF");
+      myProfileList = new String[] { "NONE" };
+    }
     return myProfileList;
   }
 
@@ -156,8 +244,12 @@ public class Navbar {
   }
 
   public void searchMethod(String search) {
-    searchBox = driver.findElement(By.id(Constants.SearchBoxID));
-    searchBox.sendKeys(search);
-    searchBox.sendKeys(Keys.ENTER);
+    try {
+      searchBox = driver.findElement(By.id(Constants.SearchBoxID));
+      searchBox.sendKeys(search);
+      searchBox.sendKeys(Keys.ENTER);
+    } catch (Exception e) {
+      System.out.println("CAN'T SEND KEY WORD - SEARCH METHOD");
+    }
   }
 }
