@@ -44,6 +44,7 @@ public class BookmarksTest extends TaskBase {
 
     Allure.step("Delete the Third Item from Bookmarks");
     bookmarksPage.clickSelectBookmarksBtn(2);
+    Thread.sleep(500); // Just For ScreenShot
 
     Allure.step("After Delete the Third Item from Bookmarks - Take Screen Shot");
     File bookmarksPageAfterDelete = takeScreenShot
@@ -52,6 +53,7 @@ public class BookmarksTest extends TaskBase {
 
     Allure.step("Delete All Items from Bookmarks");
     bookmarksPage.deleteAllBookmarksResult();
+    Thread.sleep(500); // Just For ScreenShot
 
     Allure.step("After Delete All Items from Bookmarks - Take Screen Shot");
     File bookmarksPageAfterDeleteAll = takeScreenShot
